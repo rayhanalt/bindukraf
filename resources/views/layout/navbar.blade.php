@@ -16,15 +16,12 @@
     <div data-aos-duration="800" data-aos="fade-down" class="flex-2 mr-3">
         <span class="btn-ghost btn text-sm normal-case">
             @if (auth()->user()->jabatan == 'guru')
-                {{ auth()->user()->hasGuru->nama_guru }}
+                {{ auth()->user()->hasGuru->nama_guru }} | {{ auth()->user()->jabatan }}
             @elseif (auth()->user()->jabatan == 'siswa')
-                {{ auth()->user()->hasSiswa->nama_panggilan }}
+                {{ auth()->user()->hasSiswa->nama_panggilan }} | {{ auth()->user()->jabatan }}
             @else
                 ADMIN
             @endif
-            | {{ auth()->user()->jabatan }}
-
-
             <br>
 
         </span>
