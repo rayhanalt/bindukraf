@@ -17,7 +17,7 @@ class Staff
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->jabatan != 'staff') {
+        if (Auth::user()->jabatan != 'siswa') {
             return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk halaman ini.');
         }
         return $next($request);

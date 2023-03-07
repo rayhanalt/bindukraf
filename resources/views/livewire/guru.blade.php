@@ -1,7 +1,7 @@
 <div>
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
-            <a href="/bidang/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
+            <a href="/guru/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
         </div>
         <div>
             @include('layout.notif')
@@ -10,13 +10,14 @@
             <input wire:model="search" type="text" class="input-info input input-sm ml-2" placeholder="Search">
         </div>
     </div>
-    <table class="table-compact mt-10 table w-full">
+    <table class="mt-10 table w-full">
         <!-- head -->
         <thead class="sticky top-0">
             <tr>
                 <th></th>
-                <th>Kode Bidang</th>
-                <th>Nama Bidang</th>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Mapel</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -24,17 +25,18 @@
             @foreach ($data as $item)
                 <tr>
                     <th>{{ $loop->iteration + $data->FirstItem() - 1 }}</th>
-                    <td>{{ $item->kode_bidang }}</td>
-                    <td>{{ $item->nama_bidang }}</td>
+                    <td>{{ $item->nip }}</td>
+                    <td>{{ $item->nama_guru }}</td>
+                    <td>{{ $item->kode_mapel }}</td>
                     <td>
-                        <a href="/bidang/{{ $item->kode_bidang }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
+                        <a href="/guru/{{ $item->nip }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
                             ✎
                         </a>
-                        <form action="/bidang/{{ $item->kode_bidang }}" method="POST">
+                        <form action="/guru/{{ $item->nip }}" method="POST">
                             @method('delete')
                             @csrf
                             <button class="btn-outline btn btn-error btn-sm"
-                                onclick="return confirm('yakin hapus data {{ $item->nama_bidang }} ?')">
+                                onclick="return confirm('yakin hapus data {{ $item->nama_guru }} ?')">
                                 🗑
                             </button>
                         </form>

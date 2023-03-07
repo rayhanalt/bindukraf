@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\ProyekController;
-use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UbahProfileController;
 use App\Http\Controllers\PekerjaProyekController;
 
 /*
@@ -38,8 +39,20 @@ Route::controller(PekerjaProyekController::class)->group(function () {
     Route::get('pekerjaProyek/create/{proyek}', 'customCreate')->middleware('auth');
 });
 
+//ubah profil
+Route::controller(UbahProfileController::class)->group(function () {
+    //get route edit
+    Route::get('user/edit/{user}', 'editUser')->middleware('auth');
+    //admin
+    Route::put('user/{user}', 'updateUser')->middleware('auth');
+    //guru
+    Route::put('user/editGuru/{user}', 'updateGuru')->middleware('auth');
+    //siswa
+    Route::put('user/editSiswa/{user}', 'updateSiswa')->middleware('auth');
+});
+
 // Pegawai
-Route::resource('/pegawai', PegawaiController::class)->except('show')->middleware('auth');
+Route::resource('/guru', GuruController::class)->except('show')->middleware('auth');
 
 // Proyek
 Route::resource('/proyek', ProyekController::class)->middleware('auth');
@@ -48,11 +61,6 @@ Route::resource('/proyek', ProyekController::class)->middleware('auth');
 // Bidang
 Route::resource('/bidang', BidangController::class)->except('show')->middleware('auth');
 
-// Denda
-// Route::resource('/denda', DendaController::class)->except('show')->middleware('auth');
-// Route::controller(DendaController::class)->group(function () {
-//     Route::get('/denda/getData/{kode_rental}', 'getData')->middleware('auth');
-// });
 // login
 Route::controller(LoginController::class)->group(function () {
     Route::post('/login', 'auth');

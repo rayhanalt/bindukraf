@@ -51,6 +51,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('guru'),
 
         ]);
+        User::create([
+            'username' => '4',
+            'jabatan' => 'guru',
+            'password' => bcrypt('guru'),
+
+        ]);
 
         User::create([
             'username' => '3',
@@ -64,6 +70,12 @@ class DatabaseSeeder extends Seeder
             'nip' => '2',
             'nama_guru' => 'Subkhi',
             'kode_mapel' => 'KTA-200',
+
+        ]);
+        guru::create([
+            'nip' => '4',
+            'nama_guru' => 'Raafi',
+            'kode_mapel' => 'KTA-20',
 
         ]);
         siswa::create([

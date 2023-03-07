@@ -17,7 +17,7 @@ class Manajer
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->jabatan != 'manajer') {
+        if (Auth::user()->jabatan != 'guru') {
             return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk halaman ini.');
         }
         return $next($request);

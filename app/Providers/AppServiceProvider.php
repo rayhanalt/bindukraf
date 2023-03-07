@@ -28,11 +28,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function (User $user) {
             return $user->jabatan === 'admin';
         });
-        Gate::define('staff', function (User $user) {
-            return $user->jabatan === 'staff';
+        Gate::define('siswa', function (User $user) {
+            return $user->jabatan === 'siswa';
         });
-        Gate::define('manajer', function (User $user) {
-            return $user->jabatan === 'manajer';
+        Gate::define('guru', function (User $user) {
+            return $user->jabatan === 'guru';
         });
     }
 }
