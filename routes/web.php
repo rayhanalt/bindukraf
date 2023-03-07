@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\DashboardController;
@@ -51,8 +52,11 @@ Route::controller(UbahProfileController::class)->group(function () {
     Route::put('user/editSiswa/{user}', 'updateSiswa')->middleware('auth');
 });
 
-// Pegawai
+// Guru
 Route::resource('/guru', GuruController::class)->except('show')->middleware('auth');
+
+// Siswa
+Route::resource('/siswa', SiswaController::class)->except('show')->middleware('auth');
 
 // Proyek
 Route::resource('/proyek', ProyekController::class)->middleware('auth');

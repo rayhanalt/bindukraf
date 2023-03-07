@@ -56,6 +56,7 @@
                 @endcan
                 @can('admin')
                     <li><a href="/guru">Guru</a></li>
+                    <li><a href="/siswa">Siswa</a></li>
                     {{-- <li><a href="/bidang">Bidang</a></li>
                     <li><a href="/pegawai">Pegawai</a></li>
                     <li><a href="/pekerjaProyek">Tim Proyek</a></li>

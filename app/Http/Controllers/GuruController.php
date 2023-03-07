@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\Guru;
-use App\Models\Bidang;
 use App\Models\guru as ModelsGuru;
-use App\Models\Pegawai;
-use App\Models\Proyek;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +33,7 @@ class GuruController extends Controller
         if (Auth::user()->jabatan == 'admin') {
             return view('admin.guru.create');
         }
-        return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk halaman Pegawai.');
+        return redirect()->back()->with('error', 'Anda tidak memiliki hak akses.');
     }
 
     /**
@@ -50,7 +46,7 @@ class GuruController extends Controller
     {
         if (Auth::user()->jabatan == 'admin') {
             $validasiGuru = $request->validate([
-                'nip' => 'required|numeric|unique:guru,nip',
+                'nip' => 'required|numeric|unique:guru,nip|unique:users,username',
                 'nama_guru' => 'required',
                 'kode_mapel' => 'required'
             ]);
@@ -65,7 +61,7 @@ class GuruController extends Controller
 
             return redirect('/guru')->with('success', 'New Data has been added!')->withInput();
         }
-        return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk halaman Pegawai.');
+        return redirect()->back()->with('error', 'Anda tidak memiliki hak akses.');
     }
 
     /**
@@ -90,10 +86,9 @@ class GuruController extends Controller
         if (Auth::user()->jabatan == 'admin') {
             return view('admin.guru.edit', [
                 'item' => $guru,
-                'guru' => ModelsGuru::get(),
             ]);
         }
-        return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk halaman Edit Pegawai Lain.');
+        return redirect()->back()->with('error', 'Anda tidak memiliki hak akses.');
     }
 
     /**
