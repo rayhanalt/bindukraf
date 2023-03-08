@@ -36,8 +36,8 @@
                         </g>
                     </svg>
                 </div>
-                <div class="stat-title">Jumlah Data Pegawai</div>
-                {{-- <div class="stat-value">{{ $pegawai }}</div> --}}
+                <div class="stat-title">Jumlah Data Siswa</div>
+                <div class="stat-value">{{ $siswa }}</div>
             </div>
 
             <div class="stat">
@@ -58,8 +58,8 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <div class="stat-title">Jumlah Data Proyek</div>
-                {{-- <div class="stat-value">{{ $proyek }}</div> --}}
+                <div class="stat-title">Jumlah Data Guru</div>
+                <div class="stat-value">{{ $guru }}</div>
             </div>
 
             <div class="stat">

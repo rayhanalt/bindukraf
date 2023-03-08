@@ -2,115 +2,25 @@
 @section('content')
     <div class="overflow-x-auto">
         <div class="card shadow-xl">
-            <h3 class="sticky top-0 text-lg font-bold">Ubah Data Proyek
+            <h3 class="sticky top-0 text-lg font-bold">Ubah Data
                 <hr>
             </h3>
             <div class="card-body">
-                <form action="/proyek/{{ $item->kode_proyek }}" method="post" enctype="multipart/form-data">
+                <form action="/mapel/{{ $item->kode_mapel }}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <div class="form-control w-full max-w-full">
                         <label class="label">
-                            <span class="label-text">Nama Proyek</span>
+                            <span class="label-text">Nama Mapel</span>
                             <span class="label-text-alt"></span>
                         </label>
-                        <input name="nama_proyek" type="text" placeholder="Type here"
-                            value="{{ old('nama_proyek', $item->nama_proyek) }}"
+                        <input name="nama_mapel" type="text" placeholder="Type here"
+                            value="{{ old('nama_mapel', $item->nama_mapel) }}"
                             class="input-bordered input w-full max-w-full" />
                         <label class="label">
                             <span class="label-text-alt"></span>
                             <span class="label-text-alt text-red-600">
-                                @error('nama_proyek')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                        </label>
-                    </div>
-                    <div class="form-control w-full max-w-full">
-                        <label class="label">
-                            <span class="label-text">Penanggung Jawab</span>
-                            <span class="label-text-alt"></span>
-                        </label>
-                        <select class="select-bordered select" name="nip">
-                            <option disabled selected>Pick one</option>
-                            @foreach ($getPegawai as $pegawai)
-                                <option {{ old('nip') == $pegawai->nip ? 'selected' : '' }}
-                                    @if ($pegawai->nip == $item->nip) selected @endif value="{{ $pegawai->nip }}">
-                                    {{ $pegawai->nama }} | {{ $pegawai->nip }}</option>
-                            @endforeach
-                        </select>
-                        <label class="label">
-                            <span class="label-text-alt"></span>
-                            <span class="label-text-alt text-red-600">
-                                @error('nik')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                        </label>
-                    </div>
-                    <div class="form-control w-full max-w-full">
-                        <label class="label">
-                            <span class="label-text">Tanggal Mulai</span>
-                            <span class="label-text-alt"></span>
-                        </label>
-                        <input name="tgl_mulai" type="date" placeholder="Type here"
-                            value="{{ old('tgl_mulai', $item->tgl_mulai) }}"
-                            class="datepicker input-bordered input w-full max-w-full" />
-                        <label class="label">
-                            <span class="label-text-alt"></span>
-                            <span class="label-text-alt text-red-600">
-                                @error('tgl_mulai')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                        </label>
-                    </div>
-                    <div class="form-control w-full max-w-full">
-                        <label class="label">
-                            <span class="label-text">Tanggal Selesai</span>
-                            <span class="label-text-alt"></span>
-                        </label>
-                        <input name="tgl_selesai" type="date" placeholder="Type here"
-                            value="{{ old('tgl_selesai', $item->tgl_selesai) }}"
-                            class="datepicker input-bordered input w-full max-w-full" />
-                        <label class="label">
-                            <span class="label-text-alt"></span>
-                            <span class="label-text-alt text-red-600">
-                                @error('tgl_selesai')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                        </label>
-                    </div>
-                    <div class="form-control w-full max-w-full">
-                        <label class="label">
-                            <span class="label-text">Tanggal Dibuat</span>
-                            <span class="label-text-alt"></span>
-                        </label>
-                        <input name="tgl_dibuat" type="date" placeholder="Type here"
-                            value="{{ old('tgl_dibuat', $item->tgl_dibuat) }}"
-                            class="datepicker input-bordered input w-full max-w-full" />
-                        <label class="label">
-                            <span class="label-text-alt"></span>
-                            <span class="label-text-alt text-red-600">
-                                @error('tgl_dibuat')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                        </label>
-                    </div>
-                    <div class="form-control w-full max-w-full">
-                        <label class="label">
-                            <span class="label-text">Nama Mitra</span>
-                            <span class="label-text-alt"></span>
-                        </label>
-                        <input name="nama_mitra" type="text" placeholder="Type here"
-                            value="{{ old('nama_mitra', $item->nama_mitra) }}"
-                            class="input-bordered input w-full max-w-full" />
-                        <label class="label">
-                            <span class="label-text-alt"></span>
-                            <span class="label-text-alt text-red-600">
-                                @error('nama_mitra')
+                                @error('nama_mapel')
                                     {{ $message }}
                                 @enderror
                             </span>

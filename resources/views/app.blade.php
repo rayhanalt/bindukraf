@@ -28,7 +28,7 @@
                     {{-- Notif hak akses --}}
                     <div class="fixed bottom-14 left-0 right-0 m-auto flex h-12 w-full items-center justify-center">
                         @if (session()->has('error'))
-                            <button class="btn btn-error btn-xs">
+                            <button class="btn-error btn btn-xs">
                                 {{ session('error') }}
                             </button>
                         @endif
@@ -57,6 +57,8 @@
                 @can('admin')
                     <li><a href="/guru">Guru</a></li>
                     <li><a href="/siswa">Siswa</a></li>
+                    <li><a href="/kelas">Kelas</a></li>
+                    <li><a href="/mapel">Mapel</a></li>
                     {{-- <li><a href="/bidang">Bidang</a></li>
                     <li><a href="/pegawai">Pegawai</a></li>
                     <li><a href="/pekerjaProyek">Tim Proyek</a></li>

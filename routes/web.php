@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\BidangController;
-use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UbahProfileController;
-use App\Http\Controllers\PekerjaProyekController;
+use App\Models\kelas;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,24 +21,22 @@ use App\Http\Controllers\PekerjaProyekController;
 |
 */
 
-// home
-// Route::get('/', function () {
-//     return view('dashboard');
-// })->middleware('auth');
-
 // Login
 Route::get('/loginpage', function () {
     return view('login');
 })->name('login')->middleware('guest');
 
+// login
+Route::controller(LoginController::class)->group(function () {
+    Route::post('/login', 'auth');
+    Route::get('/login', 'auth')->middleware('guest');
+
+    Route::post('/logout', 'logout');
+    Route::get('/logout', 'logout')->middleware('guest');
+});
+
 // Dashboard
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
-
-// Pekerja Proyek
-Route::resource('/pekerjaProyek', PekerjaProyekController::class)->except('create', 'edit', 'update', 'show')->middleware('auth');
-Route::controller(PekerjaProyekController::class)->group(function () {
-    Route::get('pekerjaProyek/create/{proyek}', 'customCreate')->middleware('auth');
-});
 
 //ubah profil
 Route::controller(UbahProfileController::class)->group(function () {
@@ -58,18 +56,8 @@ Route::resource('/guru', GuruController::class)->except('show')->middleware('aut
 // Siswa
 Route::resource('/siswa', SiswaController::class)->except('show')->middleware('auth');
 
-// Proyek
-Route::resource('/proyek', ProyekController::class)->middleware('auth');
+// Mapel
+Route::resource('/mapel', MapelController::class)->except('show')->middleware('auth');
 
-
-// Bidang
-Route::resource('/bidang', BidangController::class)->except('show')->middleware('auth');
-
-// login
-Route::controller(LoginController::class)->group(function () {
-    Route::post('/login', 'auth');
-    Route::get('/login', 'auth')->middleware('guest');
-
-    Route::post('/logout', 'logout');
-    Route::get('/logout', 'logout')->middleware('guest');
-});
+// Kelas
+Route::resource('/kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except('show')->middleware('auth');

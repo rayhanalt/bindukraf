@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kelas extends Model
+class mapel extends Model
 {
     use HasFactory;
-    protected $table = 'kelas';
+    protected $table = 'mapel';
     protected $guarded = ['id'];
 
     public function getRouteKeyName()
     {
-        return 'kode_kelas';
+        return 'kode_mapel';
     }
 
 
@@ -25,16 +25,8 @@ class kelas extends Model
         static::creating(
             function ($model) {
 
-                $model->kode_kelas = 'KK-' . rand(100000, 999999);
+                $model->kode_mapel = 'KMA-' . rand(100000, 999999);
             }
         );
-    }
-
-    // ? untuk relasi
-
-    // belongsTo
-    public function getWaliKelas()
-    {
-        return $this->belongsTo(guru::class, 'nip', 'nip');
     }
 }

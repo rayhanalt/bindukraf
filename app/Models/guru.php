@@ -19,8 +19,8 @@ class guru extends Model
 
 
     //  ? untuk relasi
-    // public function alternatif()
-    // {
-    //     return $this->hasMany(alternatif::class, 'kode_kategori', 'kode_kategori');
-    // }
+    public function haveKelas()
+    {
+        return $this->hasOne(kelas::class, 'nip', 'nip');
+    }
 }

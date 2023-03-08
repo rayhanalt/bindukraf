@@ -2,7 +2,7 @@
 @section('content')
     <div class="overflow-x-auto">
         <div class="card shadow-xl">
-            <h3 class="sticky top-0 text-lg font-bold">Ubah Data Pekerja Proyek
+            <h3 class="sticky top-0 text-lg font-bold">Ubah Data
                 <hr>
             </h3>
             <div class="card-body">
