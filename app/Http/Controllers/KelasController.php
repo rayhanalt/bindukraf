@@ -69,7 +69,7 @@ class KelasController extends Controller
      * @param  int  Denda $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Denda $kelas)
+    public function show(kelas $kelas)
     {
         //
     }
@@ -84,7 +84,8 @@ class KelasController extends Controller
     {
         if (Auth::user()->jabatan == 'admin') {
             return view('admin.kelas.edit', [
-                'item' => $kelas
+                'item' => $kelas,
+                'getWaliKelas' => guru::get()
             ]);
         }
         return redirect()->back()->with('error', 'Anda tidak memiliki hak akses.');
@@ -100,9 +101,21 @@ class KelasController extends Controller
     public function update(Request $request, kelas $kelas)
     {
         if (Auth::user()->jabatan == 'admin') {
+
+            $guru = guru::where('nip', $request->nip)->first();
             $validate = $request->validate([
-                'nama_kelas' => 'required'
+                'nama_kelas' => 'required',
+                'kapasitas' => 'required',
             ]);
+            if ($request->nip != $kelas->nip) {
+                $validate = $request->validate([
+                    'nama_kelas' => 'required',
+                    'kapasitas' => 'required',
+                    'nip' => 'required|unique:kelas,nip',
+                ], [
+                    'nip.unique' => 'Bapak/Ibu ' . $guru->nama_guru . ' sudah menjadi wali kelas lain.'
+                ]);
+            }
             $kelas->update($validate);
 
             return redirect('/kelas')->with('success', 'Data has been updated!')->withInput();

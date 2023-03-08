@@ -8,7 +8,6 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UbahProfileController;
-use App\Models\kelas;
 
 /*
 |--------------------------------------------------------------------------

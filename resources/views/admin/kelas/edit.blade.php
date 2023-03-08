@@ -6,42 +6,58 @@
                 <hr>
             </h3>
             <div class="card-body">
-                <form action="/pekerjaProyek/{{ $item->kode_pekerja_proyek }}" method="post" enctype="multipart/form-data">
+                <form action="/kelas/{{ $item->kode_kelas }}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <div class="form-control w-full max-w-full">
                         <label class="label">
-                            <span class="label-text">Proyek</span>
+                            <span class="label-text">Nama Kelas</span>
                             <span class="label-text-alt"></span>
                         </label>
-                        <select class="select-bordered select" name="kode_proyek">
-                            <option disabled selected>Pick one</option>
-                            @foreach ($getProyek as $proyek)
-                                <option value="{{ $proyek->kode_proyek }}" @if ($proyek->kode_proyek == $item->kode_proyek) selected @endif
-                                    {{ old('kode_proyek') == $proyek->kode_proyek ? 'selected' : '' }}>
-                                    {{ $proyek->nama_proyek }} | {{ $proyek->kode_proyek }}</option>
-                            @endforeach
-                        </select>
+                        <input name="nama_kelas" type="text" placeholder="Type here"
+                            value="{{ old('nama_kelas', $item->nama_kelas) }}"
+                            class="input-bordered input w-full max-w-full" />
                         <label class="label">
                             <span class="label-text-alt"></span>
                             <span class="label-text-alt text-red-600">
-                                @error('nip')
+                                @error('nama_kelas')
                                     {{ $message }}
                                 @enderror
                             </span>
                         </label>
                     </div>
+
                     <div class="form-control w-full max-w-full">
                         <label class="label">
-                            <span class="label-text">Tim Proyek</span>
+                            <span class="label-text">
+                                Kapasitas
+                            </span>
                             <span class="label-text-alt"></span>
                         </label>
-                        <select class="select-bordered select" name="nip">
+                        <input name="kapasitas" type="number" placeholder="Type here"
+                            value="{{ old('kapasitas', $item->kapasitas) }}"
+                            class="input-bordered input w-full max-w-full" />
+                        <label class="label">
+                            <span class="label-text-alt"></span>
+                            <span class="label-text-alt text-red-600">
+                                @error('kapasitas')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="form-control w-full max-w-full">
+                        <label class="label">
+                            <span class="label-text">Wali Kelas</span>
+                            <span class="label-text-alt"></span>
+                        </label>
+                        <select class="select-bordered select" id="nip" name="nip">
                             <option disabled selected>Pick one</option>
-                            @foreach ($getPegawai as $pegawai)
-                                <option {{ old('nip') == $pegawai->nip ? 'selected' : '' }}
-                                    @if ($pegawai->nip == $item->nip) selected @endif value="{{ $pegawai->nip }}">
-                                    {{ $pegawai->nama }} | {{ $pegawai->nip }}</option>
+                            @foreach ($getWaliKelas as $waliKelas)
+                                <option value="{{ $waliKelas->nip }}"
+                                    {{ old('nip', $item->nip) == $waliKelas->nip ? 'selected' : '' }}>
+                                    {{ $waliKelas->nama_guru }} | {{ $waliKelas->nip }}</option>
                             @endforeach
                         </select>
                         <label class="label">
