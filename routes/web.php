@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JenisUjianController;
 use App\Http\Controllers\UbahProfileController;
 
 /*
@@ -57,6 +58,9 @@ Route::resource('/siswa', SiswaController::class)->except('show')->middleware('a
 
 // Mapel
 Route::resource('/mapel', MapelController::class)->except('show')->middleware('auth');
+
+// JenisUjian
+Route::resource('/jenis_ujian', JenisUjianController::class)->except('show')->middleware('auth');
 
 // Kelas
 Route::resource('/kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except('show')->middleware('auth');

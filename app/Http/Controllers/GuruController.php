@@ -108,7 +108,7 @@ class GuruController extends Controller
 
         if ($guru->nip != $request->nip) {
             $request->validate([
-                'nip' => 'unique:guru,nip'
+                'nip' => 'unique:guru,nip|unique:users,username'
             ]);
         }
 

@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class nilai extends Model
+class jenis_ujian extends Model
 {
     use HasFactory;
-    protected $table = 'nilai';
+    protected $table = 'jenis_ujian';
     protected $guarded = ['id'];
 
     public function getRouteKeyName()
     {
-        return 'kode_nilai';
+        return 'kode_jenis_ujian';
     }
 
 
@@ -25,16 +25,16 @@ class nilai extends Model
         static::creating(
             function ($model) {
 
-                $model->kode_nilai = 'KN-' . rand(100000, 999999);
+                $model->kode_jenis_ujian = 'KJU-' . rand(100000, 999999);
             }
         );
     }
 
     // ? untuk relasi
 
-    // belongsTo
-    public function getJenisUjian()
+    // HasMany
+    public function haveNilai()
     {
-        return $this->belongsTo(jenis_ujian::class, 'kode_jenis_ujian', 'kode_jenis_ujian');
+        return $this->hasMany(nilai::class, 'kode_jenis_ujian', 'kode_jenis_ujian');
     }
 }

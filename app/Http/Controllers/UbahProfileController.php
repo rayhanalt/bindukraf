@@ -82,7 +82,7 @@ class UbahProfileController extends Controller
 
           if ($user->username != $request->username) {
                $request->validate([
-                    'username' => 'unique:users,username'
+                    'username' => 'unique:users,username|unique:guru,nip'
                ]);
           }
 
@@ -135,7 +135,7 @@ class UbahProfileController extends Controller
 
           if ($user->username != $request->username) {
                $request->validate([
-                    'username' => 'unique:users,username'
+                    'username' => 'unique:users,username|unique:siswa,nis'
                ]);
           }
 

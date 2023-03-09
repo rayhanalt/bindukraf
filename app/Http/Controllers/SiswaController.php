@@ -118,7 +118,7 @@ class SiswaController extends Controller
 
         if ($siswa->nis != $request->nis) {
             $request->validate([
-                'nis' => 'unique:siswa,nis'
+                'nis' => 'unique:siswa,nis|unique:users,username'
             ]);
         }
 

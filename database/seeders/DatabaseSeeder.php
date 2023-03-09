@@ -6,6 +6,9 @@ namespace Database\Seeders;
 
 use App\Models\Bidang;
 use App\Models\guru;
+use App\Models\jenis_ujian;
+use App\Models\kelas;
+use App\Models\mapel;
 use App\Models\Pegawai;
 use App\Models\siswa;
 use App\Models\User;
@@ -52,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
         User::create([
-            'username' => '4',
+            'username' => '21',
             'jabatan' => 'guru',
             'password' => bcrypt('guru'),
 
@@ -60,6 +63,13 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'username' => '3',
+            'jabatan' => 'siswa',
+            'password' => bcrypt('siswa'),
+
+        ]);
+
+        User::create([
+            'username' => '31',
             'jabatan' => 'siswa',
             'password' => bcrypt('siswa'),
 
@@ -73,42 +83,79 @@ class DatabaseSeeder extends Seeder
 
         ]);
         guru::create([
-            'nip' => '4',
+            'nip' => '21',
             'nama_guru' => 'Raafi',
             'kode_mapel' => 'KTA-20',
 
         ]);
+
         siswa::create([
             'nis' => '3',
             'nama_lengkap' => 'Qomar Al Akhmar',
-            'nama_panggilan' => 'Qomar ',
+            'nama_panggilan' => 'Qomar',
             'tempat_lahir' => 'Cirebon',
             'tanggal_lahir' => '2000-01-01',
             'jenis_kelamin' => 'L',
-            'alamat' => 'DIsana',
-            'no_telp' => '0849241294',
+            'alamat' => 'Kamboja',
+            'no_telp' => '08429241294',
 
         ]);
-        // Pegawai::create([
-        //     'nip' => '12345',
-        //     'nama' => 'Rayhan Althaf',
-        //     'kode_bidang' => Bidang::inRandomOrder()->first()->kode_bidang,
 
-        // ]);
-        // Pegawai::create([
-        //     'nip' => '123',
-        //     'nama' => 'Qomar',
-        //     'kode_bidang' => Bidang::inRandomOrder()->first()->kode_bidang,
+        siswa::create([
+            'nis' => '31',
+            'nama_lengkap' => 'Samid Al Akhmar',
+            'nama_panggilan' => 'Samid',
+            'tempat_lahir' => 'Cirebon',
+            'tanggal_lahir' => '2000-04-01',
+            'jenis_kelamin' => 'L',
+            'alamat' => 'Gunung Kelud',
+            'no_telp' => '08492451294',
 
-        // ]);
-        // Pegawai::create([
-        //     'nip' => '1234',
-        //     'nama' => 'Samidi',
-        //     'kode_bidang' => Bidang::inRandomOrder()->first()->kode_bidang,
+        ]);
 
-        // ]);
-        // Customer::factory(10)->create();
-        // Mobil::factory(10)->create();
-        // Rental::factory(10)->create();
+        jenis_ujian::create([
+            'jenis_ujian' => 'Ulangan 1'
+        ]);
+        jenis_ujian::create([
+            'jenis_ujian' => 'Ulangan 2'
+        ]);
+        jenis_ujian::create([
+            'jenis_ujian' => 'Ulangan 3'
+        ]);
+        jenis_ujian::create([
+            'jenis_ujian' => 'Ulangan 4'
+        ]);
+        jenis_ujian::create([
+            'jenis_ujian' => 'PAS'
+        ]);
+        jenis_ujian::create([
+            'jenis_ujian' => 'PTS'
+        ]);
+
+
+        kelas::create([
+            'nama_kelas' => 'X IPA 1',
+            'kapasitas' => '30',
+            'nip' => '21',
+        ]);
+        kelas::create([
+            'nama_kelas' => 'X IPS 1',
+            'kapasitas' => '34',
+            'nip' => '2',
+        ]);
+
+
+        mapel::create([
+            'nama_mapel' => 'Matematika',
+        ]);
+        mapel::create([
+            'nama_mapel' => 'Bahasa Indonesia',
+        ]);
+        mapel::create([
+            'nama_mapel' => 'Bahasa Inggris',
+        ]);
+        mapel::create([
+            'nama_mapel' => 'IPA',
+        ]);
     }
 }

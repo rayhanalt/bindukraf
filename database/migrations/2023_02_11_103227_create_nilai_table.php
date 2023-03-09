@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('kode_nilai')->unique();
             $table->integer('nis');
             $table->string('kode_mapel');
-            // $table->float('nilai_uas');
             // $table->float('nilai_tugas');
             // $table->float('nilai_uts');
             $table->string('kode_jenis_ujian');
+            $table->float('nilai');
             $table->timestamps();
         });
     }
