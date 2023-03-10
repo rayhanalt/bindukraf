@@ -48,70 +48,70 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        User::create([
-            'username' => '2',
-            'jabatan' => 'guru',
-            'password' => bcrypt('guru'),
+        // User::create([
+        //     'username' => '2',
+        //     'jabatan' => 'guru',
+        //     'password' => bcrypt('guru'),
 
-        ]);
-        User::create([
-            'username' => '21',
-            'jabatan' => 'guru',
-            'password' => bcrypt('guru'),
+        // ]);
+        // User::create([
+        //     'username' => '21',
+        //     'jabatan' => 'guru',
+        //     'password' => bcrypt('guru'),
 
-        ]);
+        // ]);
 
-        User::create([
-            'username' => '3',
-            'jabatan' => 'siswa',
-            'password' => bcrypt('siswa'),
+        // User::create([
+        //     'username' => '3',
+        //     'jabatan' => 'siswa',
+        //     'password' => bcrypt('siswa'),
 
-        ]);
+        // ]);
 
-        User::create([
-            'username' => '31',
-            'jabatan' => 'siswa',
-            'password' => bcrypt('siswa'),
+        // User::create([
+        //     'username' => '31',
+        //     'jabatan' => 'siswa',
+        //     'password' => bcrypt('siswa'),
 
-        ]);
+        // ]);
 
 
-        guru::create([
-            'nip' => '2',
-            'nama_guru' => 'Subkhi',
-            'kode_mapel' => 'KTA-200',
+        // guru::create([
+        //     'nip' => '2',
+        //     'nama_guru' => 'Subkhi',
+        //     'kode_mapel' => 'KTA-200',
 
-        ]);
-        guru::create([
-            'nip' => '21',
-            'nama_guru' => 'Raafi',
-            'kode_mapel' => 'KTA-20',
+        // ]);
+        // guru::create([
+        //     'nip' => '21',
+        //     'nama_guru' => 'Raafi',
+        //     'kode_mapel' => 'KTA-20',
 
-        ]);
+        // ]);
 
-        siswa::create([
-            'nis' => '3',
-            'nama_lengkap' => 'Qomar Al Akhmar',
-            'nama_panggilan' => 'Qomar',
-            'tempat_lahir' => 'Cirebon',
-            'tanggal_lahir' => '2000-01-01',
-            'jenis_kelamin' => 'L',
-            'alamat' => 'Kamboja',
-            'no_telp' => '08429241294',
+        // siswa::create([
+        //     'nis' => '3',
+        //     'nama_lengkap' => 'Qomar Al Akhmar',
+        //     'nama_panggilan' => 'Qomar',
+        //     'tempat_lahir' => 'Cirebon',
+        //     'tanggal_lahir' => '2000-01-01',
+        //     'jenis_kelamin' => 'L',
+        //     'alamat' => 'Kamboja',
+        //     'no_telp' => '08429241294',
 
-        ]);
+        // ]);
 
-        siswa::create([
-            'nis' => '31',
-            'nama_lengkap' => 'Samid Al Akhmar',
-            'nama_panggilan' => 'Samid',
-            'tempat_lahir' => 'Cirebon',
-            'tanggal_lahir' => '2000-04-01',
-            'jenis_kelamin' => 'L',
-            'alamat' => 'Gunung Kelud',
-            'no_telp' => '08492451294',
+        // siswa::create([
+        //     'nis' => '31',
+        //     'nama_lengkap' => 'Samid Al Akhmar',
+        //     'nama_panggilan' => 'Samid',
+        //     'tempat_lahir' => 'Cirebon',
+        //     'tanggal_lahir' => '2000-04-01',
+        //     'jenis_kelamin' => 'L',
+        //     'alamat' => 'Gunung Kelud',
+        //     'no_telp' => '08492451294',
 
-        ]);
+        // ]);
 
         jenis_ujian::create([
             'jenis_ujian' => 'Ulangan 1'

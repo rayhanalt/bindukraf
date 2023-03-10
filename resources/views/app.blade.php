@@ -28,7 +28,7 @@
                     {{-- Notif hak akses --}}
                     <div class="fixed bottom-14 left-0 right-0 m-auto flex h-12 w-full items-center justify-center">
                         @if (session()->has('error'))
-                            <button class="btn-error btn btn-xs">
+                            <button class="btn-error btn-xs btn">
                                 {{ session('error') }}
                             </button>
                         @endif
@@ -71,7 +71,7 @@
                     <li><a href="/perkembangan">Perkembangan Proyek</a></li> --}}
                 @endcan
                 <hr class="my-4 rounded-3xl border-2 border-dashed border-emerald-500" />
-                <li><a href="/user/edit/{{ auth()->user()->username }}" class="btn-outline btn btn-secondary">Ubah
+                <li><a href="/user/edit/{{ auth()->user()->username }}" class="btn-outline btn-secondary btn">Ubah
                         Profil</a></li>
             </ul>
         </div>

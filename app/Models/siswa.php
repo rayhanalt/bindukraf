@@ -19,8 +19,23 @@ class siswa extends Model
 
 
     //  ? untuk relasi
-    // public function alternatif()
-    // {
-    //     return $this->hasMany(alternatif::class, 'kode_kategori', 'kode_kategori');
-    // }
+    public function haveAlamat()
+    {
+        return $this->hasOne(alamat::class, 'nis', 'nis');
+    }
+
+    public function haveOrangtuaWali()
+    {
+        return $this->hasOne(orangtua_wali::class, 'nis', 'nis');
+    }
+
+    public function havePendidikanSebelum()
+    {
+        return $this->hasOne(pendidikan_sebelum::class, 'nis', 'nis');
+    }
+
+    public function haveKesehatan()
+    {
+        return $this->hasOne(kesehatan::class, 'nis', 'nis');
+    }
 }

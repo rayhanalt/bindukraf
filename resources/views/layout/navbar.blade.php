@@ -30,10 +30,10 @@
         @if (auth()->user())
             <form action="/logout" method="POST">
                 @csrf
-                <button type="submit" class="btn-outline btn-error btn">Logout</button>
+                <button type="submit" class="btn-error btn-outline btn">Logout</button>
             </form>
         @else
-            <a href="/login" class="btn-outline btn-info btn">
+            <a href="/login" class="btn-info btn-outline btn">
                 Login
             </a>
         @endif
