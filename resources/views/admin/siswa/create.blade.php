@@ -17,7 +17,6 @@
                             <table class="table-compact table">
                                 <tr>
                                     <td>
-
                                         <input name="nis" type="text" placeholder="NIS" value="{{ old('nis') }}"
                                             class="input-bordered input">
                                         <label class="label">
@@ -30,7 +29,6 @@
                                         </label>
                                     </td>
                                     <td>
-
                                         <input name="nama_lengkap" type="text" placeholder="Nama Lengkap"
                                             value="{{ old('nama_lengkap') }}" class="input-bordered input">
                                         <label class="label">
@@ -43,7 +41,6 @@
                                         </label>
                                     </td>
                                     <td>
-
                                         <input name="nama_panggilan" type="text" placeholder="Nama Panggilan"
                                             value="{{ old('nama_panggilan') }}" class="input-bordered input">
                                         <label class="label">
@@ -56,7 +53,6 @@
                                         </label>
                                     </td>
                                     <td>
-
                                         <input name="agama" type="text" placeholder="Agama" value="{{ old('agama') }}"
                                             class="input-bordered input">
                                         <label class="label">
@@ -69,7 +65,6 @@
                                         </label>
                                     </td>
                                     <td>
-
                                         <input name="tempat_lahir" type="text" placeholder="Tempat Lahir"
                                             value="{{ old('tempat_lahir') }}" class="input-bordered input">
                                         <label class="label">
@@ -81,7 +76,6 @@
                                             </span>
                                         </label>
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td>
@@ -122,22 +116,6 @@
                                             <span class="label-text"></span>
                                             <span class="label-text-alt"></span>
                                         </label>
-                                        <input name="kewarganegaraan" type="text" placeholder="Kewarganegaraan"
-                                            value="{{ old('kewarganegaraan') }}" class="input-bordered input">
-                                        <label class="label">
-                                            <span class="label-text-alt"></span>
-                                            <span class="label-text-alt text-red-600">
-                                                @error('kewarganegaraan')
-                                                    {{ $message }}
-                                                @enderror
-                                            </span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label class="label">
-                                            <span class="label-text"></span>
-                                            <span class="label-text-alt"></span>
-                                        </label>
                                         <input name="anak_ke" type="number" placeholder="Anak Ke"
                                             value="{{ old('anak_ke') }}" class="input-bordered input">
                                         <label class="label">
@@ -165,9 +143,6 @@
                                             </span>
                                         </label>
                                     </td>
-                                </tr>
-                                <tr>
-
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -179,6 +154,24 @@
                                             <span class="label-text-alt"></span>
                                             <span class="label-text-alt text-red-600">
                                                 @error('jumlah_saudara_angkat')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
+                                        <input name="jumlah_saudara_tiri" type="number" placeholder="Saudara Tiri"
+                                            value="{{ old('jumlah_saudara_tiri') }}" class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('jumlah_saudara_tiri')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -239,6 +232,81 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="form-control w-full max-w-full">
+                        <label class="label rounded-lg bg-stone-300">
+                            <span class="label-tex text-lg font-medium">Data Kesehatan Siswa</span>
+                            <span class="label-text-alt"></span>
+                        </label>
+                        <div class="overflow-x-auto">
+                            <table class="table-compact table">
+                                <tr>
+                                    <td>
+                                        <input name="golongan_darah" type="text" placeholder="Golongan Darah"
+                                            value="{{ old('golongan_darah') }}" class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('golongan_darah')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="penyakit_pernah_diderita" type="text"
+                                            placeholder="Riwayat Penyakit" value="{{ old('penyakit_pernah_diderita') }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('penyakit_pernah_diderita')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="kelainan_jasmani" type="text" placeholder="Kelainan Jasmani"
+                                            value="{{ old('kelainan_jasmani') }}" class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('kelainan_jasmani')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="tinggi_badan" type="text" placeholder="Tinggi Badan"
+                                            value="{{ old('tinggi_badan') }}" class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('tinggi_badan')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="berat_badan" type="text" placeholder="Berat Badan"
+                                            value="{{ old('berat_badan') }}" class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('berat_badan')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="form-control mt-10 w-full max-w-full lg:mt-0">
                         <label class="label rounded-lg bg-stone-300">
                             <span class="label-text text-lg font-medium">Alamat</span>
