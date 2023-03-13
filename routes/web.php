@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JenisUjianController;
 use App\Http\Controllers\UbahProfileController;
+use App\Http\Controllers\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +66,6 @@ Route::resource('/jenis_ujian', JenisUjianController::class)->except('show')->mi
 
 // Kelas
 Route::resource('/kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except('show')->middleware('auth');
+
+// export excel
+Route::get('export-data', [ExportController::class, 'exportData'])->middleware('auth');
