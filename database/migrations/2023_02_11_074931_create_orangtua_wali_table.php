@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orangtua_wali', function (Blueprint $table) {
             $table->id();
             $table->integer('nis');
-            $table->string('Nama');
+            $table->string('nama')->nullable();
             $table->string('agama')->nullable();
             $table->string('kewarganegaraan')->nullable();
             $table->string('pendidikan_terakhir')->nullable();

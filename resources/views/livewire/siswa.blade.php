@@ -1,7 +1,7 @@
 <div>
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
-            <a href="/siswa/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
+            <a href="/siswa/create" class="btn-outline btn-success btn-sm btn mr-2">➕ Data</a>
         </div>
         <div>
             @include('layout.notif')
@@ -35,22 +35,16 @@
                     <td>{{ $item->nama_panggilan }}</td>
                     <td>{{ $item->tempat_lahir }}</td>
                     <td>{{ date('d F Y', strtotime($item->tanggal_lahir)) }}</td>
-                    <td>
-                        <div class="hover:whitespace-pre-line hover:tooltip-open hover:tooltip hover:tooltip-top"
-                            data-tip="{{ $item->alamat }}">
-                            {{ Str::words($item->alamat, $words = 5, $end = '...') }}
-                        </div>
-
-                    </td>
+                    <td>{{ $item->haveAlamat->jalan }}</td>
                     <td>{{ $item->no_telp }}</td>
                     <td>
-                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
+                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn-accent btn-sm btn mb-1">
                             ✎
                         </a>
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-outline btn btn-error btn-sm"
+                            <button class="btn-outline btn-error btn-sm btn"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
