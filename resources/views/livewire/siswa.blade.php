@@ -2,6 +2,7 @@
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
             <a href="/siswa/create" class="btn-outline btn-success btn-sm btn mr-2">➕ Data</a>
+            <a href="/export-data" class="btn-outline btn-secondary btn-sm btn mr-2">Export</a>
         </div>
         <div>
             @include('layout.notif')
