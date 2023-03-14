@@ -69,3 +69,4 @@ Route::resource('/kelas', KelasController::class)->parameters(['kelas' => 'kelas
 
 // export excel
 Route::get('export-data', [ExportController::class, 'exportData'])->middleware('auth');
+Route::post('import-data', [ExportController::class, 'import'])->middleware('auth');
