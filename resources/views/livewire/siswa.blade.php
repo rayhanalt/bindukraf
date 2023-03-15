@@ -3,33 +3,13 @@
         <div>
             <a href="/siswa/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
             <a href="/export-data" class="btn-outline btn btn-secondary btn-sm mr-2">Export</a>
-
         </div>
+
         <div>
             @include('layout.notif')
         </div>
         <div>
-            <form method="post" enctype="multipart/form-data" action="/import-data">
-                {{ csrf_field() }}
-                <div class="form-group">
-                    <table class="table">
-                        <tr>
-                            <td width="40%" align="right"><label>Select File for Upload</label></td>
-                            <td width="30">
-                                <input type="file" name="select_file" />
-                            </td>
-                            <td width="30%" align="left">
-                                <input type="submit" name="upload" class="btn btn-primary" value="Upload">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="40%" align="right"></td>
-                            <td width="30"><span class="text-muted">.xls, .xslx</span></td>
-                            <td width="30%" align="left"></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
+
             <input wire:model="search" type="text" class="input-info input input-sm ml-2"
                 placeholder="Search, if date: 'Y-m-d'">
 

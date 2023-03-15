@@ -6,6 +6,22 @@
     <div class="overflow-x-auto">
         <div class="card shadow-xl">
             <div class="card-body">
+                <div class="form-control w-full max-w-full">
+                    <label class="label rounded-lg bg-stone-300">
+                        <span class="label-tex text-lg font-medium">Import Data Siswa dari Excel</span>
+                        <span class="label-text-alt"></span>
+                    </label>
+                    <div class="mt-2 overflow-x-auto">
+                        <form method="post" enctype="multipart/form-data" action="/import-data">
+                            @csrf
+                            <input type="file" name="select_file" class="file-input-bordered file-input w-full max-w-xs">
+                            <input type="submit" name="upload" class="btn btn-primary" value="Import">
+                        </form>
+                        @foreach ($errors->all() as $error)
+                            {{ $error }} <br>
+                        @endforeach
+                    </div>
+                </div>
                 <form action="/siswa" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-control w-full max-w-full">
@@ -881,7 +897,7 @@
                     </div><br>
 
                     <div class="card-actions justify-end">
-                        <button type="submit" class="btn-error btn">Reset</button>
+                        <button type="submit" class="btn btn-error">Reset</button>
                         <button type="submit"class="btn btn-success">Simpan</button>
                     </div>
                     <br>

@@ -24,7 +24,7 @@ class ExportController extends Controller
           $path = $request->file('select_file')->getRealPath();
           // $data = Excel::load($path, function($reader) {})->get();
           $data = Excel::import(new SiswaImport, $path);
-          return back()->with('success', 'Excel Data Imported successfully.');
+          return redirect('/siswa')->with('success', 'Excel Data Imported successfully.');
      }
 
      public function exportData()
@@ -109,7 +109,7 @@ class ExportController extends Controller
                ->get()
                ->toArray();
 
-          return Excel::download(new ExportSingleTable($data), 'filename.xlsx');
+          return Excel::download(new ExportSingleTable($data), 'DataSiswa.xlsx');
      }
 }
 
