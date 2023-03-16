@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
 use App\Imports\SiswaImport;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -23,8 +24,12 @@ class ExportController extends Controller
           ]);
           $path = $request->file('select_file')->getRealPath();
           // $data = Excel::load($path, function($reader) {})->get();
-          $data = Excel::import(new SiswaImport, $path);
-          return redirect('/siswa')->with('success', 'Excel Data Imported successfully.');
+          Excel::import(new SiswaImport, $path);
+          if (session()->has('failed')) {
+               return redirect('/siswa/create');
+          } else {
+               return redirect('/siswa')->with('success', 'File Excel berhasil di import.');
+          }
      }
 
      public function exportData()
@@ -33,6 +38,7 @@ class ExportController extends Controller
                ->select(
                     // siswa
                     'siswa.nis',
+                    'siswa.nisn',
                     'siswa.nama_lengkap',
                     'siswa.nama_panggilan',
                     'siswa.agama',
@@ -109,7 +115,7 @@ class ExportController extends Controller
                ->get()
                ->toArray();
 
-          return Excel::download(new ExportSingleTable($data), 'DataSiswa.xlsx');
+          return Excel::download(new ExportSingleTable($data), 'DataSiswa.xlsx', \Maatwebsite\Excel\Excel::XLSX, ['format' => 'yyy-mm-dd']);
      }
 }
 
@@ -126,6 +132,7 @@ class ExportSingleTable implements FromCollection, WithHeadings, WithEvents
      {
           return [
                'NIS',
+               'NISN',
                'Nama Lengkap',
                'Nama Panggilan',
                'Agama',
@@ -189,7 +196,7 @@ class ExportSingleTable implements FromCollection, WithHeadings, WithEvents
      {
           return [
                AfterSheet::class => function (AfterSheet $event) {
-                    $event->sheet->getStyle('A1:BA1')->applyFromArray([
+                    $event->sheet->getStyle('A1:BB1')->applyFromArray([
                          'font' => [
                               'bold' => true,
                          ],

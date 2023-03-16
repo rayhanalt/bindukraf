@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
             $table->integer('nis')->unique();
+            $table->integer('nisn')->unique();
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');
             $table->string('agama');

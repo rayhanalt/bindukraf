@@ -50,17 +50,18 @@ class SiswaController extends Controller
         if (Auth::user()->jabatan == 'admin') {
             $validasiSiswa = $request->validate([
                 'nis' => 'required|numeric|unique:siswa,nis|unique:users,username',
+                'nisn' => 'required|numeric|unique:siswa,nisn',
                 'nama_lengkap' => 'required',
                 'nama_panggilan' => 'required',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
                 'kewarganegaraan' => 'required',
-                'anak_ke' => 'numeric',
-                'jumlah_saudara_kandung' => 'numeric',
-                'jumlah_saudara_angkat' => 'numeric',
-                'jumlah_saudara_tiri' => 'numeric',
+                'anak_ke' => '',
+                'jumlah_saudara_kandung' => '',
+                'jumlah_saudara_angkat' => '',
+                'jumlah_saudara_tiri' => '',
                 'bahasa' => 'required',
-                'yatim_piatu' => 'required',
+                'yatim_piatu' => '',
                 'agama' => 'required',
                 'jenis_kelamin' => 'required',
                 'alamat' => 'numeric',
@@ -191,17 +192,18 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nis' => 'required',
+            'nisn' => 'required',
             'nama_lengkap' => 'required',
             'nama_panggilan' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'kewarganegaraan' => 'required',
-            'anak_ke' => 'numeric',
-            'jumlah_saudara_kandung' => 'numeric',
-            'jumlah_saudara_angkat' => 'numeric',
-            'jumlah_saudara_tiri' => 'numeric',
+            'anak_ke' => '',
+            'jumlah_saudara_kandung' => '',
+            'jumlah_saudara_angkat' => '',
+            'jumlah_saudara_tiri' => '',
             'bahasa' => 'required',
-            'yatim_piatu' => 'required',
+            'yatim_piatu' => '',
             'agama' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'numeric',
@@ -233,7 +235,12 @@ class SiswaController extends Controller
 
         if ($siswa->nis != $request->nis) {
             $request->validate([
-                'nis' => 'unique:siswa,nis|unique:users,username'
+                'nis' => 'unique:siswa,nis|unique:users,username',
+            ]);
+        }
+        if ($siswa->nisn != $request->nisn) {
+            $request->validate([
+                'nisn' => 'unique:siswa,nisn',
             ]);
         }
 
@@ -307,6 +314,7 @@ class SiswaController extends Controller
             // update siswa
             ModelsSiswa::where('nis', $siswa->nis)->update([
                 'nis' => $request->nis,
+                'nisn' => $request->nisn,
                 'nama_lengkap' => $request->nama_lengkap,
                 'nama_panggilan' => $request->nama_panggilan,
                 'tempat_lahir' => $request->tempat_lahir,
@@ -394,6 +402,7 @@ class SiswaController extends Controller
             // update siswa
             ModelsSiswa::where('nis', $siswa->nis)->update([
                 'nis' => $request->nis,
+                'nisn' => $request->nisn,
                 'nama_lengkap' => $request->nama_lengkap,
                 'nama_panggilan' => $request->nama_panggilan,
                 'tempat_lahir' => $request->tempat_lahir,

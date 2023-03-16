@@ -30,6 +30,18 @@
                                         </label>
                                     </td>
                                     <td>
+                                        <input name="nisn" type="text" placeholder="NISN"
+                                            value="{{ old('nisn', $item->nisn) }}" class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('nisn')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
                                         <input name="nama_lengkap" type="text" placeholder="Nama Lengkap"
                                             value="{{ old('nama_lengkap', $item->nama_lengkap) }}"
                                             class="input-bordered input">
@@ -67,7 +79,14 @@
                                             </span>
                                         </label>
                                     </td>
+
+                                </tr>
+                                <tr>
                                     <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
                                         <input name="tempat_lahir" type="text" placeholder="Tempat Lahir"
                                             value="{{ old('tempat_lahir', $item->tempat_lahir) }}"
                                             class="input-bordered input">
@@ -80,8 +99,6 @@
                                             </span>
                                         </label>
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -150,6 +167,8 @@
                                             </span>
                                         </label>
                                     </td>
+                                </tr>
+                                <tr>
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -167,8 +186,6 @@
                                             </span>
                                         </label>
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -919,7 +936,7 @@
                         </label>
                     </div>
                     <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-error">Reset</button>
+                        <button type="submit" class="btn-error btn">Reset</button>
                         <button type="submit"class="btn btn-success">Simpan</button>
                     </div>
                 </form>

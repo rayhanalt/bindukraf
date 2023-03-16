@@ -15,11 +15,24 @@
                         <form method="post" enctype="multipart/form-data" action="/import-data">
                             @csrf
                             <input type="file" name="select_file" class="file-input-bordered file-input w-full max-w-xs">
-                            <input type="submit" name="upload" class="btn btn-primary" value="Import">
+                            <input type="submit" name="upload" class="btn-primary btn" value="Import">
                         </form>
-                        @foreach ($errors->all() as $error)
-                            {{ $error }} <br>
-                        @endforeach
+                        @error('0')
+                            <span class="text-sm text-red-600">
+                                Cek kembali, NIS harus unik tidak boleh ada yang sama.
+                            </span>
+                        @enderror
+                        @error('1')
+                            <br>
+                            <span class="text-sm text-red-600">
+                                Cek kembali, NISN harus unik tidak boleh ada yang sama.
+                            </span>
+                        @enderror
+                        @if (session()->has('failed'))
+                            <span class="text-sm text-red-600">
+                                {{ session('failed') }}
+                            </span>
+                        @endif
                     </div>
                 </div>
                 <form action="/siswa" method="post" enctype="multipart/form-data">
@@ -39,6 +52,18 @@
                                             <span class="label-text-alt"></span>
                                             <span class="label-text-alt text-red-600">
                                                 @error('nis')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="nisn" type="text" placeholder="NISN" value="{{ old('nisn') }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('nisn')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -80,7 +105,14 @@
                                             </span>
                                         </label>
                                     </td>
+
+                                </tr>
+                                <tr>
                                     <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
                                         <input name="tempat_lahir" type="text" placeholder="Tempat Lahir"
                                             value="{{ old('tempat_lahir') }}" class="input-bordered input">
                                         <label class="label">
@@ -92,8 +124,6 @@
                                             </span>
                                         </label>
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -159,6 +189,9 @@
                                             </span>
                                         </label>
                                     </td>
+
+                                </tr>
+                                <tr>
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -175,8 +208,6 @@
                                             </span>
                                         </label>
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -232,8 +263,10 @@
                                         </label>
                                         <select class="select-bordered select w-full" name="jenis_kelamin">
                                             <option disabled selected value="">Jenis Kelamin</option>
-                                            <option value="L">Pria</option>
-                                            <option value="P">Wanita</option>
+                                            <option @if (old('jenis_kelamin' == 'L')) selected @endif value="L">Pria
+                                            </option>
+                                            <option @if (old('jenis_kelamin' == 'P')) selected @endif value="P">Wanita
+                                            </option>
                                         </select>
                                         <label class="label">
                                             <span class="label-text-alt"></span>
@@ -897,7 +930,7 @@
                     </div><br>
 
                     <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-error">Reset</button>
+                        <button type="submit" class="btn-error btn">Reset</button>
                         <button type="submit"class="btn btn-success">Simpan</button>
                     </div>
                     <br>
