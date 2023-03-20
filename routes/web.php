@@ -56,7 +56,7 @@ Route::controller(UbahProfileController::class)->group(function () {
 Route::resource('/guru', GuruController::class)->except('show')->middleware('auth');
 
 // Siswa
-Route::resource('/siswa', SiswaController::class)->except('show')->middleware('auth');
+Route::resource('/siswa', SiswaController::class)->middleware('auth');
 
 // Mapel
 Route::resource('/mapel', MapelController::class)->except('show')->middleware('auth');
@@ -68,5 +68,9 @@ Route::resource('/jenis_ujian', JenisUjianController::class)->except('show')->mi
 Route::resource('/kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except('show')->middleware('auth');
 
 // export excel
-Route::get('export-data', [ExportController::class, 'exportData'])->middleware('auth');
-Route::post('import-data', [ExportController::class, 'import'])->middleware('auth');
+Route::controller(ExportController::class)->group(function () {
+    // export
+    Route::get('export-data', 'exportData')->middleware('auth');
+    // import
+    Route::post('import-data', 'import')->middleware('auth');
+});

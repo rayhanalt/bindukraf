@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\alamat;
+use PDF;
 use App\Models\kesehatan;
-use App\Models\orangtua_wali;
-use App\Models\siswa as ModelsSiswa;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
+use App\Models\orangtua_wali;
 use Illuminate\Support\Facades\DB;
+use App\Models\siswa as ModelsSiswa;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class SiswaController extends Controller
 {
@@ -155,9 +157,30 @@ class SiswaController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(ModelsSiswa $siswa)
     {
-        //
+        $users = ModelsSiswa::with('haveAlamat', 'haveKesehatan')->where('nis', $siswa->nis)->first();
+        $ayah = orangtua_wali::where('nis', $siswa->nis)->where('status', 'ayah')->first();
+        $ibu = orangtua_wali::where('nis', $siswa->nis)->where('status', 'ibu')->first();
+        $wali = orangtua_wali::where('nis', $siswa->nis)->where('status', 'wali')->first();
+
+        $tanggal_lahir = Carbon::parse($users->tanggal_lahir);
+        $tgl_format = $tanggal_lahir->format("j F Y");
+
+        $data = [
+            'title' => 'Laporan Data Kategori',
+            'date' => date('m/d/Y'),
+            'siswa' => $users,
+            'ayah' => $ayah,
+            'ibu' => $ibu,
+            'wali' => $wali,
+            'tanggal_lahir' => $tgl_format
+        ];
+        // return view('admin.siswa.pdf', $data);
+
+        $pdf = PDF::loadView('admin.siswa.pdf', $data);
+        $set = $pdf->setPaper('a4', 'portrait');
+        return $set->stream("Data-$siswa->nis-$siswa->nama_lengkap.pdf");
     }
 
     /**
