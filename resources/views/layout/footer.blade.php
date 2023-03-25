@@ -1,5 +1,5 @@
-<footer class="footer footer-center fixed bottom-0 hidden bg-base-300 p-4 text-base-content md:block">
+<footer class="footer footer-center fixed bottom-0 bg-gradient-to-r from-gray-800 via-gray-900 to-black p-4 text-white">
     <div>
-        <p>Copyright © 2023 - Created By Rayhan Althaf</p>
+        <p class="text-center">&copy; 2023 - Created By Rayhan Althaf</p>
     </div>
 </footer>

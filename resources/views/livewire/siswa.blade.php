@@ -48,12 +48,12 @@
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-outline btn btn-error btn-sm"
+                            <button class="btn-error btn-outline btn btn-sm"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
                         </form>
-                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn btn-info btn-sm mt-1">
+                        <a href="/siswa/{{ $item->nis }}" class="btn-info btn-outline btn btn-sm mt-1">
                             👁
                         </a>
                     </td>

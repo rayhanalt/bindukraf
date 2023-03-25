@@ -1,11 +1,11 @@
 @extends('app')
 @section('content')
-    <h3 class="sticky top-0 z-10 text-lg font-bold">Tambah Data
+    <h3 class="top-0 z-10 bg-transparent text-lg font-bold lg:sticky">Tambah Data
         <hr>
     </h3>
     <div class="overflow-x-auto">
         <div class="card shadow-xl">
-            <div class="card-body">
+            <div class="card-body p-2 pb-10 lg:pb-0">
                 <div class="form-control w-full max-w-full">
                     <label class="label rounded-lg bg-stone-300">
                         <span class="label-tex text-lg font-medium">Import Data Siswa dari Excel</span>
@@ -15,7 +15,7 @@
                         <form method="post" enctype="multipart/form-data" action="/import-data">
                             @csrf
                             <input type="file" name="select_file" class="file-input-bordered file-input w-full max-w-xs">
-                            <input type="submit" name="upload" class="btn-primary btn" value="Import">
+                            <input type="submit" name="upload" class="btn btn-primary" value="Import">
                         </form>
                         @error('0')
                             <span class="text-sm text-red-600">
@@ -915,12 +915,12 @@
                     </div>
 
                     <div class="form-control w-full max-w-full">
-                        <label class="label">
+                        <label class="label rounded-lg bg-stone-300">
                             <span class="label-text text-lg font-medium">Password</span>
                             <span class="label-text-alt"></span>
                         </label>
                         <input name="password" type="text" readonly value="12345"
-                            class="input-bordered input w-full max-w-full" />
+                            class="input-bordered input mt-2 w-full max-w-full" />
                         <label class="label">
                             <span class="label-text-alt text-blue-600">Ubah sendiri saat sudah login</span>
                             <span class="label-text-alt text-red-600">

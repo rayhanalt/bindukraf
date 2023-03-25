@@ -17,7 +17,7 @@
                 width: 3cm;
                 position: absolute;
                 top: 3.5cm;
-                right: 0;
+                right: -4;
                 background: white;
             }
         }
@@ -63,7 +63,7 @@
     </table>
     <table align="center" style="page-break-after: always;" width="100%" border="0">
         <tr>
-            <td align="right" width="33%">NIS</td>
+            <td align="right" width="50%" style="width: 170px">NIS</td>
             <td width="1px">:</td>
             <td style="border-bottom: 1px solid #000; width: 180px;">
                 {{ $siswa->nis }}
@@ -166,7 +166,7 @@
             </td>
         </tr>
         <tr>
-            <td>Anak Yatim / Yatim Piatu</td>
+            <td>Yatim / Piatu</td>
             <td width="1px">:</td>
             <td colspan="6" style="border-bottom: 1px solid #000; width: 300px;">
                 {{ $siswa->yatim_piatu }}

@@ -1,11 +1,11 @@
 @extends('app')
 @section('content')
-    <h3 class="sticky top-0 z-10 text-lg font-bold">Tambah Data
+    <h3 class="top-0 z-10 text-lg font-bold lg:sticky">Tambah Data
         <hr>
     </h3>
     <div class="overflow-x-auto">
         <div class="card shadow-xl">
-            <div class="card-body">
+            <div class="card-body p-2 pb-14 lg:pb-2">
                 <form action="/siswa/{{ $item->nis }}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
@@ -922,12 +922,12 @@
                     </div>
 
                     <div class="form-control w-full max-w-full">
-                        <label class="label">
-                            <span class="label-text">Password</span>
+                        <label class="label rounded-lg bg-stone-300">
+                            <span class="label-text text-lg font-medium">Password</span>
                             <span class="label-text-alt"></span>
                         </label>
                         <input name="password" type="password" placeholder="" value="{{ old('password') }}" readonly
-                            class="input-bordered input w-full max-w-full" />
+                            class="input-bordered input mt-2 w-full max-w-full" />
                         <label class="label">
                             <span class="label-text-alt"></span>
                             <span class="label-text-alt text-red-600">
