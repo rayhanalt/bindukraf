@@ -179,7 +179,7 @@ class SiswaController extends Controller
         // return view('admin.siswa.pdf', $data);
 
         $pdf = PDF::loadView('admin.siswa.pdf', $data);
-        $set = $pdf->setPaper('a4', 'portrait');
+        $set = $pdf->setPaper('Legal', 'portrait');
         return $set->stream("Data-$siswa->nis-$siswa->nama_lengkap.pdf");
     }
 

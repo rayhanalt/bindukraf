@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs"
+    ServerName localhost
+    <Directory "C:/xampp/htdocs">
+        Options Indexes FollowSymLinks Includes ExecCGI
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs/binduk/public"
+    ServerName binduk.test
+    <Directory "C:/xampp/htdocs/binduk">
+     Options Indexes FollowSymLinks Includes ExecCGI
+     AllowOverride All
+     Require all granted
+    </Directory>
+</VirtualHost>
+
+tambahkan script diatas pada config httpd.conf
+
+lalu tambahkan host baru
+127.0.0.1 namaHost
+
+pada C:\Windows\System32\drivers\etc\hosts

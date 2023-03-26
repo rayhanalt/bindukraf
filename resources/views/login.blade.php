@@ -10,8 +10,11 @@
 </head>
 
 <body>
+
     <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="hero-content w-screen flex-col lg:flex-row-reverse">
+            <h1 data-aos-duration="500" data-aos="fade-right" class="text-5xl font-bold"></h1>
+
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 class="absolute block h-screen w-full" style="margin: auto; z-index: -10;" preserveAspectRatio="none"
                 viewBox="0 0 1920 880">
@@ -86,17 +89,16 @@
                         </div>
                     </div>
                 @endif
-                <h1 data-aos-duration="500" data-aos="fade-right" class="text-5xl font-bold">Login now!</h1>
-                <p data-aos-duration="700" data-aos="fade-right" class="py-6">Provident cupiditate voluptatem et
-                    in.
-                    Quaerat fugiat ut
-                    assumenda
-                    excepturi
-                    exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                <p data-aos-duration="700" data-aos="fade-right" class="py-6">
+                </p>
             </div>
             <div data-aos-duration="800" data-aos="flip-left"
                 class="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
-
+                <div class="relative top-5 content-center text-center text-lg font-bold">
+                    <h2>
+                        BUKU INDUK <br> SMA ISLAM AL-AZHAR 5 CIREBON
+                    </h2>
+                </div>
                 <form action="login" method="post">
                     @csrf
 
@@ -124,7 +126,7 @@
                             </label>
                         </div>
                         <div class="form-control mt-6">
-                            <button class="btn-primary btn">Login</button>
+                            <button class="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </form>

@@ -7,7 +7,7 @@
     <title>{{ $title }}</title>
     <style>
         @page {
-            size: A4;
+            size: Legal;
             margin: 2cm 2cm 2cm 2cm;
         }
 
@@ -16,7 +16,7 @@
             .pas-foto {
                 width: 3cm;
                 position: absolute;
-                top: 3.5cm;
+                top: 7.8cm;
                 right: -4;
                 background: white;
             }
@@ -34,7 +34,8 @@
 <body>
     <center>
         <b>
-            IV. LEMBAR BUKU INDUK REGISTER
+            {{-- IV. LEMBAR BUKU INDUK REGISTER   --}}
+            <img src="{{ public_path('img/banner.JPG') }}" width="700px" height="160px" />
         </b>
     </center>
     <br>

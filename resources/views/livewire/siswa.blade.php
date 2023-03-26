@@ -21,6 +21,7 @@
             <tr>
                 <th></th>
                 <th>NIS</th>
+                <th>NISN</th>
                 <th>Nama Lengkap</th>
                 <th>Nama panggilan</th>
                 <th>Tempat Lahir</th>
@@ -35,11 +36,14 @@
                 <tr>
                     <th>{{ $loop->iteration + $data->FirstItem() - 1 }}</th>
                     <td>{{ $item->nis }}</td>
+                    <td>{{ $item->nisn }}</td>
                     <td>{{ $item->nama_lengkap }}</td>
                     <td>{{ $item->nama_panggilan }}</td>
                     <td>{{ $item->tempat_lahir }}</td>
                     <td>{{ date('d F Y', strtotime($item->tanggal_lahir)) }}</td>
-                    <td>{{ $item->haveAlamat->jalan }}</td>
+                    <td>{{ $item->haveAlamat->jalan }}, {{ $item->haveAlamat->rt_rw }}, {{ $item->haveAlamat->desa }},
+                        {{ $item->haveAlamat->kecamatan }}
+                    </td>
                     <td>{{ $item->no_telp }}</td>
                     <td>
                         <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
@@ -48,13 +52,14 @@
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-error btn-outline btn btn-sm"
+                            <button class="btn-outline btn btn-error btn-sm"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
                         </form>
-                        <a href="/siswa/{{ $item->nis }}" class="btn-info btn-outline btn btn-sm mt-1">
-                            👁
+                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn btn-info btn-sm mt-1">
+                            {{-- 👁 --}}
+                            🖨️
                         </a>
                     </td>
                 </tr>
