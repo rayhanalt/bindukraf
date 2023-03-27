@@ -7,14 +7,19 @@ use PDF;
 use App\Models\kesehatan;
 use Illuminate\Http\Request;
 use App\Models\orangtua_wali;
+use App\Models\pendidikan_sebelum;
 use Illuminate\Support\Facades\DB;
 use App\Models\siswa as ModelsSiswa;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use Illuminate\Support\Facades\App;
+
 
 class SiswaController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -50,6 +55,8 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         if (Auth::user()->jabatan == 'admin') {
+
+            // validasi Data siswa
             $validasiSiswa = $request->validate([
                 'nis' => 'required|numeric|unique:siswa,nis|unique:users,username',
                 'nisn' => 'required|numeric|unique:siswa,nisn',
@@ -66,13 +73,10 @@ class SiswaController extends Controller
                 'yatim_piatu' => '',
                 'agama' => 'required',
                 'jenis_kelamin' => 'required',
-                'alamat' => 'numeric',
                 'no_telp' => 'required',
             ]);
 
-            $validasiSiswa['alamat'] = $request->nis;
-            ModelsSiswa::create($validasiSiswa);
-
+            // validasi data kesehatan siswa
             $validasikesehatan = $request->validate([
                 'nis' => 'required',
                 'golongan_darah' => '',
@@ -81,8 +85,23 @@ class SiswaController extends Controller
                 'tinggi_badan' => '',
                 'berat_badan' => '',
             ]);
-            kesehatan::create($validasikesehatan);
 
+            // validasi data pendidikan sebelum siswa
+            $validasiPendidikanSebelum = $request->validate([
+                'nis' => 'required',
+                'sekolah_asal' => '',
+                'tanggal_ijazah' => '',
+                'nomor_ijazah' => '',
+                'lama_belajar' => '',
+                'dari_sekolah' => '',
+                'alasan' => '',
+                'di_kelas' => '',
+                'kelompok' => '',
+                'jurusan' => '',
+                'tanggal' => '',
+            ]);
+
+            // validasi alamat siswa
             $validasialamat = $request->validate([
                 'nis' => 'required',
                 'jalan' => 'required',
@@ -96,6 +115,16 @@ class SiswaController extends Controller
                 'jarak_ke_sekolah' => '',
 
             ]);
+
+            // ubah format tanggal ke text tanggal '20 maret 2019'
+            $validasiSiswa['tanggal_lahir'] = \Carbon\Carbon::parse($request->tanggal_lahir)->isoFormat('D MMMM Y');
+            $validasiPendidikanSebelum['tanggal_ijazah'] = \Carbon\Carbon::parse($request->tanggal_ijazah)->isoFormat('D MMMM Y');
+            $validasiPendidikanSebelum['tanggal'] = \Carbon\Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
+
+            // create validasi2 sebelumnya
+            ModelsSiswa::create($validasiSiswa);
+            kesehatan::create($validasikesehatan);
+            pendidikan_sebelum::create($validasiPendidikanSebelum);
             alamat::create($validasialamat);
 
             // create ayah
@@ -191,11 +220,18 @@ class SiswaController extends Controller
      */
     public function edit(ModelsSiswa $siswa)
     {
+        // set timezone menjadi Asia/Jakarta
+        // $date = Carbon::createFromLocaleFormat('j F Y', 'id_ID', $siswa->havePendidikanSebelum()->first()->tanggal_ijazah);
+        // $date->setTimezone('Asia/Jakarta');
+        // dd(json_encode($date));
+
+        // dd(json_encode($date));
         if (Auth::user()->jabatan == 'admin') {
             return view('admin.siswa.edit', [
                 'item' => $siswa,
                 'alamat' => $siswa->haveAlamat()->first(),
                 'kesehatan' => $siswa->haveKesehatan()->first(),
+                'pendidikan' => $siswa->havePendidikanSebelum()->first(),
                 'ayah' => $siswa->haveOrangtuaWali()->where('status', 'ayah')->first(),
                 'ibu' => $siswa->haveOrangtuaWali()->where('status', 'ibu')->first(),
                 'wali' => $siswa->haveOrangtuaWali()->where('status', 'wali')->first(),
@@ -214,8 +250,8 @@ class SiswaController extends Controller
     public function update(Request $request, ModelsSiswa $siswa)
     {
         $request->validate([
-            'nis' => 'required',
-            'nisn' => 'required',
+            'nis' => 'required|numeric',
+            'nisn' => 'required|numeric',
             'nama_lengkap' => 'required',
             'nama_panggilan' => 'required',
             'tempat_lahir' => 'required',
@@ -229,7 +265,6 @@ class SiswaController extends Controller
             'yatim_piatu' => '',
             'agama' => 'required',
             'jenis_kelamin' => 'required',
-            'alamat' => 'numeric',
             'no_telp' => 'required',
         ]);
         // validasi kesehatan
@@ -240,6 +275,20 @@ class SiswaController extends Controller
             'kelainan_jasmani' => '',
             'tinggi_badan' => '',
             'berat_badan' => '',
+        ]);
+        // validasi pendidikan sebelum
+        $request->validate([
+            'nis' => 'required',
+            'sekolah_asal' => '',
+            'tanggal_ijazah' => '',
+            'nomor_ijazah' => '',
+            'lama_belajar' => '',
+            'dari_sekolah' => '',
+            'alasan' => '',
+            'di_kelas' => '',
+            'kelompok' => '',
+            'jurusan' => '',
+            'tanggal' => '',
         ]);
         // validasi alamat
         $request->validate([
@@ -266,10 +315,14 @@ class SiswaController extends Controller
                 'nisn' => 'unique:siswa,nisn',
             ]);
         }
+        $tgl_lahir = \Carbon\Carbon::parse($request->tanggal_lahir)->isoFormat('D MMMM Y');
+        $tgl_ijazah = \Carbon\Carbon::parse($request->tanggal_ijazah)->isoFormat('D MMMM Y');
+        $tgl_diterima = \Carbon\Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
+        // dd(json_encode($tgl_ijazah));
 
         if ($request->password != null) {
             // update user
-            DB::table('users')->where('username', '=', $siswa->nis)->update([
+            DB::table('users')->where('username', '=', "$siswa->nis")->update([
                 'username' => $request->nis,
                 'password' => bcrypt($request->password),
             ]);
@@ -282,6 +335,20 @@ class SiswaController extends Controller
                 'tinggi_badan' => $request->tinggi_badan,
                 'berat_badan' => $request->berat_badan,
             ]);
+            // update pendidikan sebeum
+            DB::table('pendidikan_sebelum')->where('nis', '=', $siswa->nis)->update([
+                'nis' => $request->nis,
+                'sekolah_asal' => $request->sekolah_asal,
+                'tanggal_ijazah' => $tgl_ijazah,
+                'nomor_ijazah' => $request->nomor_ijazah,
+                'lama_belajar' => $request->lama_belajar,
+                'dari_sekolah' => $request->dari_sekolah,
+                'alasan' => $request->alasan,
+                'di_kelas' => $request->di_kelas,
+                'kelompok' => $request->kelompok,
+                'jurusan' => $request->jurusan,
+                'tanggal' => $tgl_diterima,
+            ]);
             // update alamat
             DB::table('alamat')->where('nis', '=', $siswa->nis)->update([
                 'nis' => $request->nis,
@@ -341,7 +408,7 @@ class SiswaController extends Controller
                 'nama_lengkap' => $request->nama_lengkap,
                 'nama_panggilan' => $request->nama_panggilan,
                 'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
+                'tanggal_lahir' => $tgl_lahir,
                 'kewarganegaraan' => $request->kewarganegaraan,
                 'anak_ke' => $request->anak_ke,
                 'jumlah_saudara_kandung' => $request->jumlah_saudara_kandung,
@@ -351,14 +418,14 @@ class SiswaController extends Controller
                 'agama' => $request->agama,
                 'yatim_piatu' => $request->yatim_piatu,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->nis,
                 'no_telp' => $request->no_telp,
             ]);
         }
 
         if ($request->password == null) {
             // update user
-            DB::table('users')->where('username', '=', $siswa->nis)->update([
+            // dd($request->nis);
+            DB::table('users')->where('username', '=', "$siswa->nis")->update([
                 'username' => $request->nis,
             ]);
             // update kesehatan
@@ -370,6 +437,20 @@ class SiswaController extends Controller
                 'tinggi_badan' => $request->tinggi_badan,
                 'berat_badan' => $request->berat_badan,
             ]);
+            // update pendidikan sebeum
+            DB::table('pendidikan_sebelum')->where('nis', '=', $siswa->nis)->update([
+                'nis' => $request->nis,
+                'sekolah_asal' => $request->sekolah_asal,
+                'tanggal_ijazah' => $tgl_ijazah,
+                'nomor_ijazah' => $request->nomor_ijazah,
+                'lama_belajar' => $request->lama_belajar,
+                'dari_sekolah' => $request->dari_sekolah,
+                'alasan' => $request->alasan,
+                'di_kelas' => $request->di_kelas,
+                'kelompok' => $request->kelompok,
+                'jurusan' => $request->jurusan,
+                'tanggal' => $tgl_diterima,
+            ]);
             // update alamat
             DB::table('alamat')->where('nis', '=', $siswa->nis)->update([
                 'nis' => $request->nis,
@@ -429,7 +510,7 @@ class SiswaController extends Controller
                 'nama_lengkap' => $request->nama_lengkap,
                 'nama_panggilan' => $request->nama_panggilan,
                 'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
+                'tanggal_lahir' => $tgl_lahir,
                 'kewarganegaraan' => $request->kewarganegaraan,
                 'anak_ke' => $request->anak_ke,
                 'jumlah_saudara_kandung' => $request->jumlah_saudara_kandung,
@@ -439,7 +520,6 @@ class SiswaController extends Controller
                 'agama' => $request->agama,
                 'yatim_piatu' => $request->yatim_piatu,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->nis,
                 'no_telp' => $request->no_telp,
             ]);
         }
@@ -457,6 +537,7 @@ class SiswaController extends Controller
         if (Auth::user()->jabatan == 'admin') {
             AuthUser::where('username', $siswa->nis)->delete();
             kesehatan::where('nis', $siswa->nis)->delete();
+            pendidikan_sebelum::where('nis', $siswa->nis)->delete();
             alamat::where('nis', $siswa->nis)->delete();
             orangtua_wali::where('nis', $siswa->nis)->delete();
             $siswa->delete();

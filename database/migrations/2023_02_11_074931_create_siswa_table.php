@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('nis')->unique();
-            $table->integer('nisn')->unique();
+            $table->bigInteger('nis')->unique();
+            $table->bigInteger('nisn')->unique();
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');
             $table->string('agama');
             $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
+            $table->string('tanggal_lahir');
             $table->string('kewarganegaraan');
             $table->integer('anak_ke')->nullable();
             $table->integer('jumlah_saudara_kandung')->nullable();
@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('yatim_piatu')->nullable();
             $table->string('bahasa');
             $table->string('jenis_kelamin');
-            $table->string('alamat');
             $table->string('no_telp');
             $table->timestamps();
         });

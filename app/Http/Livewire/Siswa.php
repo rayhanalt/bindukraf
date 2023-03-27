@@ -19,8 +19,8 @@ class Siswa extends Component
     {
         return view('livewire.siswa', [
             'data' => $this->search === null ?
-                ModelsSiswa::with('haveAlamat')->orderBy('id', 'desc')->Paginate(4)->withQueryString() :
-                ModelsSiswa::with('haveAlamat')->orderBy('id', 'desc')
+                ModelsSiswa::with('haveAlamat', 'haveOrangtuaWali')->orderBy('id', 'desc')->Paginate(3)->withQueryString() :
+                ModelsSiswa::with('haveAlamat', 'haveOrangtuaWali')->orderBy('id', 'desc')
                 ->where('nama_lengkap', 'like', '%' . $this->search . '%')
                 ->orWhere('nama_panggilan', 'like', '%' . $this->search . '%')
                 ->orWhere('nis', 'like', '%' . $this->search . '%')
@@ -31,9 +31,18 @@ class Siswa extends Component
                 ->orWhere('no_telp', 'like', '%' . $this->search . '%')
                 ->orWhereHas('haveAlamat', function ($query) {
                     $query->where('jalan', 'like', '%' . $this->search . '%')
-                        ->where('rt_rw', 'like', '%' . $this->search . '%');
+                        ->orWhere('rt_rw', 'like', '%' . $this->search . '%')
+                        ->orWhere('desa', 'like', '%' . $this->search . '%')
+                        ->orWhere('kecamatan', 'like', '%' . $this->search . '%')
+                        ->orWhere('kabupaten', 'like', '%' . $this->search . '%')
+                        ->orWhere('provinsi', 'like', '%' . $this->search . '%')
+                        ->orWhere('kode_pos', 'like', '%' . $this->search . '%');
                 })
-                ->paginate(4)->withQueryString()
+                ->orWhereHas('haveOrangtuaWali', function ($query) {
+                    $query->where('nama', 'like', '%' . $this->search . '%')
+                        ->orWhere('pekerjaan', 'like', '%' . $this->search . '%');
+                })
+                ->paginate(3)->withQueryString()
         ]);
     }
 }

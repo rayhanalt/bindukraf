@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
+setlocale(LC_TIME, 'id_ID');
 return [
 
     /*
@@ -69,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'id',
+    'locale' => 'id_ID',
 
     /*
     |--------------------------------------------------------------------------

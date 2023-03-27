@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('alamat', function (Blueprint $table) {
             $table->id();
-            $table->integer('nis')->unique();
+            $table->bigInteger('nis')->unique();
             $table->string('jalan');
             $table->string('rt_rw');
             $table->string('desa');

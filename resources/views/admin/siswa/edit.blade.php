@@ -82,6 +82,7 @@
 
                                 </tr>
                                 <tr>
+
                                     <td>
                                         <label class="label">
                                             <span class="label-text"></span>
@@ -105,7 +106,7 @@
                                             <span class="label-text-alt"></span>
                                         </label>
                                         <input name="tanggal_lahir" type="date" placeholder="Tanggal Lahir"
-                                            value="{{ old('tanggal_lahir', $item->tanggal_lahir) }}"
+                                            value="{{ old('tanggal_lahir', $item->tanggal_lahir == null ? null : \Carbon\Carbon::createFromLocaleFormat('j F Y', 'id_ID', $item->tanggal_lahir)) }}"
                                             class="datepicker input-bordered input">
                                         <label class="label">
                                             <span class="label-text-alt"></span>
@@ -340,6 +341,173 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="form-control w-full max-w-full">
+                        <label class="label rounded-lg bg-stone-300">
+                            <span class="label-tex text-lg font-medium">Data Pendidikan Siswa</span>
+                            <span class="label-text-alt"></span>
+                        </label>
+                        <div class="overflow-x-auto">
+                            <table class="table-compact table">
+                                <tr>
+                                    <td>
+                                        <input name="sekolah_asal" type="text" placeholder="Sekolah Asal"
+                                            value="{{ old('sekolah_asal', $pendidikan->sekolah_asal) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('sekolah_asal')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="tanggal_ijazah" type="date" placeholder="Tanggal Ijazah"
+                                            value="{{ old('tanggal_ijazah', $pendidikan->tanggal_ijazah == null ? null : \Carbon\Carbon::createFromLocaleFormat('j F Y', 'id_ID', $pendidikan->tanggal_ijazah)) }}"
+                                            class="datepicker input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('tanggal_ijazah')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="nomor_ijazah" type="text" placeholder="Nomor Ijazah"
+                                            value="{{ old('nomor_ijazah', $pendidikan->nomor_ijazah) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('nomor_ijazah')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="lama_belajar" type="text" placeholder="Lama Belajar"
+                                            value="{{ old('lama_belajar', $pendidikan->lama_belajar) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('lama_belajar')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input name="dari_sekolah" type="text" placeholder="Dari Sekolah"
+                                            value="{{ old('dari_sekolah', $pendidikan->dari_sekolah) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('dari_sekolah')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
+                                        <input name="alasan" type="text" placeholder="Alasan"
+                                            value="{{ old('alasan', $pendidikan->alasan) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('alasan')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
+                                        <input name="di_kelas" type="text" placeholder="Di Kelas"
+                                            value="{{ old('di_kelas', $pendidikan->di_kelas) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('di_kelas')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
+                                        <input name="kelompok" type="text" placeholder="Kelompok"
+                                            value="{{ old('kelompok', $pendidikan->kelompok) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('kelompok')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
+                                        <input name="jurusan" type="text" placeholder="Jurusan"
+                                            value="{{ old('jurusan', $pendidikan->jurusan) }}"
+                                            class="input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('jurusan')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="label">
+                                            <span class="label-text"></span>
+                                            <span class="label-text-alt"></span>
+                                        </label>
+                                        <input name="tanggal" type="date" placeholder="Tanggal Diterima"
+                                            value="{{ old('tanggal', $pendidikan->tanggal == null ? null : \Carbon\Carbon::createFromLocaleFormat('j F Y', 'id_ID', $pendidikan->tanggal)) }}"
+                                            class="datepicker input-bordered input">
+                                        <label class="label">
+                                            <span class="label-text-alt"></span>
+                                            <span class="label-text-alt text-red-600">
+                                                @error('tanggal')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
 
                     <div class="form-control mt-10 w-full max-w-full lg:mt-0">
                         <label class="label rounded-lg bg-stone-300">
@@ -751,7 +919,8 @@
                                             <span class="label-text-alt"></span>
                                         </label>
                                         <input name="no_telp_ibu" type="text" placeholder="No Telp"
-                                            value="{{ old('no_telp_ibu', $ibu->no_telp) }}" class="input-bordered input">
+                                            value="{{ old('no_telp_ibu', $ibu->no_telp) }}"
+                                            class="input-bordered input">
                                         <label class="label">
                                             <span class="label-text-alt"></span>
                                             <span class="label-text-alt text-red-600">
@@ -767,7 +936,8 @@
                                             <span class="label-text-alt"></span>
                                         </label>
                                         <input name="keadaan_ibu" type="text" placeholder="Keadaan"
-                                            value="{{ old('keadaan_ibu', $ibu->keadaan) }}" class="input-bordered input">
+                                            value="{{ old('keadaan_ibu', $ibu->keadaan) }}"
+                                            class="input-bordered input">
                                         <label class="label">
                                             <span class="label-text-alt"></span>
                                             <span class="label-text-alt text-red-600">

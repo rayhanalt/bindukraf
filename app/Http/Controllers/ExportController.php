@@ -69,6 +69,17 @@ class ExportController extends Controller
                     'kesehatan.kelainan_jasmani',
                     'kesehatan.tinggi_badan',
                     'kesehatan.berat_badan',
+                    //  pendidikan sebelum
+                    'pendidikan_sebelum.sekolah_asal',
+                    'pendidikan_sebelum.tanggal_ijazah',
+                    'pendidikan_sebelum.nomor_ijazah',
+                    'pendidikan_sebelum.lama_belajar',
+                    'pendidikan_sebelum.dari_sekolah',
+                    'pendidikan_sebelum.alasan',
+                    'pendidikan_sebelum.di_kelas',
+                    'pendidikan_sebelum.kelompok',
+                    'pendidikan_sebelum.jurusan',
+                    'pendidikan_sebelum.tanggal',
                     // ortu ayah
                     'ayah.nama AS nama_ayah',
                     'ayah.agama AS agama_ayah',
@@ -112,6 +123,7 @@ class ExportController extends Controller
                })
                ->join('alamat', 'alamat.nis', '=', 'siswa.nis')
                ->join('kesehatan', 'kesehatan.nis', '=', 'siswa.nis')
+               ->join('pendidikan_sebelum', 'pendidikan_sebelum.nis', '=', 'siswa.nis')
                ->get()
                ->toArray();
 
@@ -163,6 +175,17 @@ class ExportSingleTable implements FromCollection, WithHeadings, WithEvents
                'Kelainan Jasmani',
                'Tinggi Badan',
                'Berat Badan',
+               // Pendidikan sebelum
+               'Sekolah Asal',
+               'Tanggal Ijazah',
+               'Nomor Ijazah',
+               'Lama Belajar',
+               'Dari Sekolah',
+               'Alasan',
+               'Di Kelas',
+               'Kelompok',
+               'Jurusan',
+               'Tanggal Diterima',
                // ayah
                'Nama Ayah',
                'Agama Ayah',
@@ -196,7 +219,7 @@ class ExportSingleTable implements FromCollection, WithHeadings, WithEvents
      {
           return [
                AfterSheet::class => function (AfterSheet $event) {
-                    $event->sheet->getStyle('A1:BB1')->applyFromArray([
+                    $event->sheet->getStyle('A1:BL1')->applyFromArray([
                          'font' => [
                               'bold' => true,
                          ],

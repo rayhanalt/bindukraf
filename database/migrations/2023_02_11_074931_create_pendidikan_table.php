@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pendidikan_sebelum', function (Blueprint $table) {
             $table->id();
-            $table->integer('nis')->unique();
+            $table->bigInteger('nis')->unique();
             $table->string('sekolah_asal')->nullable();
             $table->string('tanggal_ijazah')->nullable();
             $table->string('nomor_ijazah')->nullable();

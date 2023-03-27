@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('kesehatan', function (Blueprint $table) {
             $table->id();
-            $table->integer('nis')->unique();
+            $table->bigInteger('nis')->unique();
             $table->string('golongan_darah')->nullable();
             $table->string('penyakit_pernah_diderita')->nullable();
             $table->string('kelainan_jasmani')->nullable();
