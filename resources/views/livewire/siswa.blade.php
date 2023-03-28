@@ -1,8 +1,8 @@
 <div>
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
-            <a href="/siswa/create" class="btn-success btn-outline btn btn-sm mr-2">➕ Data</a>
-            <a href="/export-data" class="btn-secondary btn-outline btn btn-sm mr-2">Export</a>
+            <a href="/siswa/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
+            <a href="/export-data" class="btn-outline btn btn-secondary btn-sm mr-2">Export</a>
         </div>
 
         <div>
@@ -15,6 +15,8 @@
 
         </div>
     </div>
+
+
     <table class="table-compact mt-10 table w-full">
         <!-- head -->
         <thead class="sticky top-0">
@@ -22,16 +24,16 @@
                 <th></th>
                 <th>NIS</th>
                 <th>NISN</th>
-                <th>Nama <br> Lengkap</th>
-                <th>Jenis <br> Kelamin</th>
-                <th>Tempat <br> Lahir</th>
-                <th>Tanggal <br> Lahir</th>
+                <th>Nama Lengkap</th>
+                <th>Jenis Kelamin</th>
+                <th>Tempat Lahir</th>
+                <th>Tanggal Lahir</th>
                 <th class="text-center">Alamat</th>
                 <th>No Telp</th>
-                <th class="text-center">Nama <br> Ayah</th>
-                <th class="text-center">Pekerjaan <br> Ayah</th>
-                <th class="text-center">Nama <br> Ibu</th>
-                <th class="text-center">Pekerjaan <br> ibu</th>
+                <th class="text-center">Nama Ayah</th>
+                <th class="text-center">Pekerjaan Ayah</th>
+                <th class="text-center">Nama Ibu</th>
+                <th class="text-center">Pekerjaan ibu</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -61,18 +63,18 @@
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ibu')->first()->nama }}</td>
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ibu')->first()->pekerjaan }}</td>
                     <td>
-                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-accent btn-outline btn btn-sm mb-1">
+                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
                             ✎
                         </a>
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-outline btn-error btn btn-sm"
+                            <button class="btn-outline btn btn-error btn-sm"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
                         </form>
-                        <a href="/siswa/{{ $item->nis }}" class="btn-info btn-outline btn btn-sm mt-1">
+                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn btn-info btn-sm mt-1">
                             {{-- 👁 --}}
                             🖨️
                         </a>
@@ -81,7 +83,8 @@
             @endforeach
         </tbody>
     </table>
-    <div class="fixed bottom-20 left-0 right-0">
+
+    <div class="fixed bottom-24 left-0 right-0">
         <div class="btn-group mx-auto grid w-fit grid-cols-2">
             <button wire:click="previousPage" @if ($data->onFirstPage()) disabled @endif
                 class="btn-outline btn btn-sm">previous</button>

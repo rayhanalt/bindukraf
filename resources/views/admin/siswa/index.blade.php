@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <div class="overflow-x-auto">
+    <div class="z-0 overflow-x-auto">
         @livewire('siswa')
     </div>
 @endsection

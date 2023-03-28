@@ -17,7 +17,7 @@
                 width: 3cm;
                 position: absolute;
                 top: 7.8cm;
-                right: -4;
+                right: -8.5;
                 background: white;
             }
         }
@@ -64,7 +64,7 @@
     </table>
     <table align="center" style="page-break-after: always;" width="100%" border="0">
         <tr>
-            <td align="right" width="50%" style="width: 170px">NIS</td>
+            <td align="right" width="50%" style="width: 200px">NIS</td>
             <td width="1px">:</td>
             <td style="border-bottom: 1px solid #000; width: 180px;">
                 {{ $siswa->nis }}
@@ -121,7 +121,7 @@
             <td>Tempat, Tanggal Lahir</td>
             <td width="1px">:</td>
             <td colspan="6" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->tempat_lahir }}, {{ $tanggal_lahir }}
+                {{ $siswa->tempat_lahir }}, {{ $siswa->tanggal_lahir }}
             </td>
         </tr>
         <tr>
@@ -307,19 +307,121 @@
             <td>Tinggi Badan</td>
             <td width="1px">:</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->haveKesehatan->tinggi_badan }} cm.
+                {{ $siswa->haveKesehatan->tinggi_badan }}
             </td>
         </tr>
         <tr>
             <td>Berat Badan</td>
             <td width="1px">:</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->haveKesehatan->berat_badan }} kg.
+                {{ $siswa->haveKesehatan->berat_badan }}
+            </td>
+        </tr>
+
+        <tr align="left">
+            <td colspan="8"><b>
+                    D. KETERANGAN PENDIDIKAN
+                </b>
+            </td>
+        </tr>
+        <tr align="left">
+            <td colspan="8">
+
+            </td>
+        </tr>
+        <tr>
+            <td>Sekolah Asal</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; ">
+                {{ $siswa->havePendidikanSebelum->sekolah_asal }}
+            </td>
+        </tr>
+        <tr>
+            <td>Tanggan dan Nomor Ijazah</td>
+            <td width="1px">:</td>
+            <td colspan="2" align="center" style="border-bottom: 1px solid #000;" width="1px">
+                @if ($siswa->havePendidikanSebelum->nomor_ijazah == !null)
+                    {{ $siswa->havePendidikanSebelum->tanggal_ijazah }}
+                @endif
+            </td>
+            <td width="1px" align="center">
+                dan
+            </td>
+            <td align="center" colspan="4" style="border-bottom: 1px solid #000;" width="1px">
+                {{ $siswa->havePendidikanSebelum->nomor_ijazah }}
+            </td>
+
+
+        </tr>
+        <tr>
+            <td>Lama Belajar</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                {{ $siswa->havePendidikanSebelum->lama_belajar }}
+            </td>
+        </tr>
+        <tr align="left">
+            <td>
+                Pindahan
+            </td>
+            <td width="1px">:</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Dari Sekolah</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                {{ $siswa->havePendidikanSebelum->dari_sekolah }}
+            </td>
+        </tr>
+        <tr>
+            <td>Alasan</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                {{ $siswa->havePendidikanSebelum->alasan }}
             </td>
         </tr>
     </table>
 
     <table align="center" width="100%" border="0">
+        <tr align="left">
+            <td>
+                Diterima Disekolah ini
+            </td>
+            <td width="1px">:</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Di kelas</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                {{ $siswa->havePendidikanSebelum->di_kelas }}
+            </td>
+        </tr>
+        <tr>
+            <td>Kelompok</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                {{ $siswa->havePendidikanSebelum->kelompok }}
+            </td>
+        </tr>
+        <tr>
+            <td>Jurusan</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                {{ $siswa->havePendidikanSebelum->jurusan }}
+            </td>
+        </tr>
+        <tr>
+            <td>Tanggal</td>
+            <td width="1px">:</td>
+            <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
+                @if ($siswa->havePendidikanSebelum->dari_sekolah == !null)
+                    {{ $siswa->havePendidikanSebelum->tanggal }}
+                @endif
+            </td>
+        </tr>
+
         <tr align="left">
             <td colspan="8">
 
@@ -327,7 +429,7 @@
         </tr>
         <tr align="left">
             <td colspan="8"><b>
-                    D. KETERANGAN ORANG TUA KANDUNG
+                    E. KETERANGAN ORANG TUA KANDUNG
                 </b>
             </td>
         </tr>
@@ -503,7 +605,7 @@
         </tr>
         <tr align="left">
             <td colspan="8"><b>
-                    E. KETERANGAN TENTANG WALI
+                    F. KETERANGAN TENTANG WALI
                 </b>
             </td>
         </tr>

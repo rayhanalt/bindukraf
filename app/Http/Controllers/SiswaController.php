@@ -188,22 +188,22 @@ class SiswaController extends Controller
      */
     public function show(ModelsSiswa $siswa)
     {
-        $users = ModelsSiswa::with('haveAlamat', 'haveKesehatan')->where('nis', $siswa->nis)->first();
+        $users = ModelsSiswa::with('haveAlamat', 'haveKesehatan', 'havePendidikanSebelum')->where('nis', $siswa->nis)->first();
         $ayah = orangtua_wali::where('nis', $siswa->nis)->where('status', 'ayah')->first();
         $ibu = orangtua_wali::where('nis', $siswa->nis)->where('status', 'ibu')->first();
         $wali = orangtua_wali::where('nis', $siswa->nis)->where('status', 'wali')->first();
 
-        $tanggal_lahir = Carbon::parse($users->tanggal_lahir);
-        $tgl_format = $tanggal_lahir->format("j F Y");
+        // $tanggal_lahir = Carbon::parse($users->tanggal_lahir);
+        // $tgl_format = $tanggal_lahir->format("j F Y");
 
         $data = [
-            'title' => 'Laporan Data Kategori',
+            'title' => 'Laporan Data Siswa',
             'date' => date('m/d/Y'),
             'siswa' => $users,
             'ayah' => $ayah,
             'ibu' => $ibu,
             'wali' => $wali,
-            'tanggal_lahir' => $tgl_format
+            // 'tanggal_lahir' => $tgl_format
         ];
         // return view('admin.siswa.pdf', $data);
 
