@@ -8,7 +8,7 @@
     <style>
         @page {
             size: Legal;
-            margin: 2cm 2cm 2cm 2cm;
+            margin: 1cm 1.5cm 2cm 1.5cm;
         }
 
         /* CSS untuk tampilan layar */
@@ -16,8 +16,8 @@
             .pas-foto {
                 width: 3cm;
                 position: absolute;
-                top: 7.8cm;
-                right: -8.5;
+                top: 6.7cm;
+                right: 0;
                 background: white;
             }
         }
@@ -35,7 +35,7 @@
     <center>
         <b>
             {{-- IV. LEMBAR BUKU INDUK REGISTER   --}}
-            <img src="{{ public_path('img/banner.JPG') }}" width="700px" height="160px" />
+            <img src="{{ public_path('img/banner.JPG') }}" width="700px" height="120px" />
         </b>
     </center>
     <br>
@@ -491,17 +491,21 @@
             <td>Alamat</td>
             <td width="1px">:</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->haveAlamat->jalan }}, {{ $siswa->haveAlamat->rt_rw }},
-                {{ $siswa->haveAlamat->desa }},
-                {{ $siswa->haveAlamat->kecamatan }},
+                @if ($ayah->nama == !null)
+                    {{ $siswa->haveAlamat->jalan }}, {{ $siswa->haveAlamat->rt_rw }},
+                    {{ $siswa->haveAlamat->desa }},
+                    {{ $siswa->haveAlamat->kecamatan }},
+                @endif
             </td>
         </tr>
         <tr>
             <td></td>
             <td>&nbsp;</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->haveAlamat->kabupaten }}, {{ $siswa->haveAlamat->provinsi }},
-                {{ $siswa->haveAlamat->kode_pos }}.
+                @if ($ayah->nama == !null)
+                    {{ $siswa->haveAlamat->kabupaten }}, {{ $siswa->haveAlamat->provinsi }},
+                    {{ $siswa->haveAlamat->kode_pos }}.
+                @endif
             </td>
         </tr>
         <tr>
@@ -516,6 +520,11 @@
             <td width="1px">:</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
                 {{ $ayah->keadaan }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7" width="1px" height="1mm">
+
             </td>
         </tr>
         <tr align="left">
@@ -571,17 +580,21 @@
             <td>Alamat</td>
             <td width="1px">:</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->haveAlamat->jalan }}, {{ $siswa->haveAlamat->rt_rw }},
-                {{ $siswa->haveAlamat->desa }},
-                {{ $siswa->haveAlamat->kecamatan }},
+                @if ($ibu->nama == !null)
+                    {{ $siswa->haveAlamat->jalan }}, {{ $siswa->haveAlamat->rt_rw }},
+                    {{ $siswa->haveAlamat->desa }},
+                    {{ $siswa->haveAlamat->kecamatan }},
+                @endif
             </td>
         </tr>
         <tr>
             <td></td>
             <td>&nbsp;</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                {{ $siswa->haveAlamat->kabupaten }}, {{ $siswa->haveAlamat->provinsi }},
-                {{ $siswa->haveAlamat->kode_pos }}.
+                @if ($ibu->nama == !null)
+                    {{ $siswa->haveAlamat->kabupaten }}, {{ $siswa->haveAlamat->provinsi }},
+                    {{ $siswa->haveAlamat->kode_pos }}.
+                @endif
             </td>
         </tr>
         <tr>

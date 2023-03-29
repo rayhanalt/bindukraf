@@ -15,7 +15,7 @@
                         <form method="post" enctype="multipart/form-data" action="/import-data">
                             @csrf
                             <input type="file" name="select_file" class="file-input-bordered file-input w-full max-w-xs">
-                            <input type="submit" name="upload" class="btn btn-primary" value="Import">
+                            <input type="submit" name="upload" class="btn-primary btn" value="Import">
                         </form>
                         @error('0')
                             <span class="text-sm text-red-600">
@@ -26,6 +26,12 @@
                             <br>
                             <span class="text-sm text-red-600">
                                 Cek kembali, NISN harus unik tidak boleh ada yang sama.
+                            </span>
+                        @enderror
+                        @error('6')
+                            <br>
+                            <span class="text-sm text-red-600">
+                                Cek kembali, TANGGAL LAHIR harus diisi.
                             </span>
                         @enderror
                         @if (session()->has('failed'))
@@ -1088,7 +1094,7 @@
                     </div><br>
 
                     <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-error">Reset</button>
+                        <button type="submit" class="btn-error btn">Reset</button>
                         <button type="submit"class="btn btn-success">Simpan</button>
                     </div>
                     <br>

@@ -1,8 +1,8 @@
 <div>
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
-            <a href="/siswa/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
-            <a href="/export-data" class="btn-outline btn btn-secondary btn-sm mr-2">Export</a>
+            <a href="/siswa/create" class="btn-outline btn-success btn-sm btn mr-2">➕ Data</a>
+            <a href="/export-data" class="btn-outline btn-secondary btn-sm btn mr-2">Export</a>
         </div>
 
         <div>
@@ -10,8 +10,7 @@
         </div>
         <div>
 
-            <input wire:model="search" type="text" class="input-info input input-sm ml-2"
-                placeholder="Search, if date: 'Y-m-d'">
+            <input wire:model="search" type="text" class="input-info input input-sm ml-2" placeholder="Search">
 
         </div>
     </div>
@@ -63,18 +62,18 @@
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ibu')->first()->nama }}</td>
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ibu')->first()->pekerjaan }}</td>
                     <td>
-                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
+                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn-accent btn-sm btn mb-1">
                             ✎
                         </a>
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-outline btn btn-error btn-sm"
+                            <button class="btn-outline btn-error btn-sm btn"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
                         </form>
-                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn btn-info btn-sm mt-1">
+                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn-info btn-sm btn mt-1">
                             {{-- 👁 --}}
                             🖨️
                         </a>

@@ -27,21 +27,32 @@ class SiswaImport implements ToCollection, WithStartRow
         return 2;
     }
 
+
     public function collection(Collection $rows)
     {
 
         Validator::make($rows->toArray(), [
             '0' => 'required|unique:siswa,nis|unique:users,username',
             '1' => 'required|unique:siswa,nisn',
+            '6' => 'required',
 
         ])->validate();
 
 
         foreach ($rows as $row) {
 
-            // if (!is_numeric($row[6])) {
-            //     return redirect('/siswa/create')->with('failed', 'Format tanggal belum diubah.'); // redirect ke halaman siswa dengan pesan error
-            // }
+            if (is_numeric($row[31])) {
+                // redirect ke halaman siswa dengan pesan error
+                $row[31] = \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($row[31] - 2)->isoFormat('D MMMM Y');
+            }
+            if (is_numeric($row[6])) {
+                // redirect ke halaman siswa dengan pesan error
+                $row[6] = \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($row[6] - 2)->isoFormat('D MMMM Y');
+            }
+            if (is_numeric($row[39])) {
+                // redirect ke halaman siswa dengan pesan error
+                $row[39] = \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($row[39] - 2)->isoFormat('D MMMM Y');
+            }
 
             // $tanggal_lahir = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]));
             // $tanggal_ijazah = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[31]));
