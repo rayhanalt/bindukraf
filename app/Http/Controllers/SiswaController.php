@@ -98,6 +98,9 @@ class SiswaController extends Controller
                 'kelompok' => '',
                 'jurusan' => '',
                 'tanggal' => '',
+                'kumpul_ijazah' => 'nullable|boolean',
+                'kumpul_akte' => 'nullable|boolean',
+                'kumpul_kk' => 'nullable|boolean',
             ]);
 
             // validasi alamat siswa
@@ -119,6 +122,11 @@ class SiswaController extends Controller
             $validasiSiswa['tanggal_lahir'] = \Carbon\Carbon::parse($request->tanggal_lahir)->isoFormat('D MMMM Y');
             $validasiPendidikanSebelum['tanggal_ijazah'] = \Carbon\Carbon::parse($request->tanggal_ijazah)->isoFormat('D MMMM Y');
             $validasiPendidikanSebelum['tanggal'] = \Carbon\Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
+
+            // boolean default
+            $validasiPendidikanSebelum['kumpul_ijazah'] = $validasiPendidikanSebelum['kumpul_ijazah'] ?? 0;
+            $validasiPendidikanSebelum['kumpul_akte'] = $validasiPendidikanSebelum['kumpul_akte'] ?? 0;
+            $validasiPendidikanSebelum['kumpul_kk'] = $validasiPendidikanSebelum['kumpul_kk'] ?? 0;
 
             // create validasi2 sebelumnya
             ModelsSiswa::create($validasiSiswa);
@@ -288,6 +296,9 @@ class SiswaController extends Controller
             'kelompok' => '',
             'jurusan' => '',
             'tanggal' => '',
+            'kumpul_ijazah' => 'nullable|boolean',
+            'kumpul_akte' => 'nullable|boolean',
+            'kumpul_kk' => 'nullable|boolean',
         ]);
         // validasi alamat
         $request->validate([
@@ -347,6 +358,9 @@ class SiswaController extends Controller
                 'kelompok' => $request->kelompok,
                 'jurusan' => $request->jurusan,
                 'tanggal' => $tgl_diterima,
+                'kumpul_ijazah' => $request->kumpul_ijazah ?? 0,
+                'kumpul_akte' => $request->kumpul_akte ?? 0,
+                'kumpul_kk' => $request->kumpul_kk ?? 0,
             ]);
             // update alamat
             DB::table('alamat')->where('nis', '=', $siswa->nis)->update([
@@ -449,6 +463,9 @@ class SiswaController extends Controller
                 'kelompok' => $request->kelompok,
                 'jurusan' => $request->jurusan,
                 'tanggal' => $tgl_diterima,
+                'kumpul_ijazah' => $request->kumpul_ijazah ?? 0,
+                'kumpul_akte' => $request->kumpul_akte ?? 0,
+                'kumpul_kk' => $request->kumpul_kk ?? 0,
             ]);
             // update alamat
             DB::table('alamat')->where('nis', '=', $siswa->nis)->update([

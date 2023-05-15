@@ -1,8 +1,8 @@
 <div>
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
-            <a href="/siswa/create" class="btn-outline btn-success btn-sm btn mr-2">➕ Data</a>
-            <a href="/export-data" class="btn-outline btn-secondary btn-sm btn mr-2">Export</a>
+            <a href="/siswa/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
+            <a href="/export-data" class="btn-outline btn btn-secondary btn-sm mr-2">Export</a>
         </div>
 
         <div>
@@ -33,6 +33,9 @@
                 <th class="text-center">Pekerjaan Ayah</th>
                 <th class="text-center">Nama Ibu</th>
                 <th class="text-center">Pekerjaan ibu</th>
+                <th class="text-center">Nama Wali</th>
+                <th class="text-center">Pekerjaan Wali</th>
+                <th>Data Terkumpul</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -61,19 +64,44 @@
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ayah')->first()->pekerjaan }}</td>
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ibu')->first()->nama }}</td>
                     <td>{{ $item->haveOrangtuaWali()->where('status', 'ibu')->first()->pekerjaan }}</td>
+                    <td>{{ $item->haveOrangtuaWali()->where('status', 'wali')->first()->nama }}</td>
+                    <td>{{ $item->haveOrangtuaWali()->where('status', 'wali')->first()->pekerjaan }}</td>
                     <td>
-                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn-accent btn-sm btn mb-1">
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <span class="label-text text-sm">Ijazah</span>
+                                <input type="checkbox" @if ($item->havePendidikanSebelum->kumpul_ijazah == 1) checked="checked" @endif
+                                    disabled class="checkbox checkbox-sm" />
+                            </label>
+                        </div>
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <span class="label-text text-sm">Akte Kelahiran</span>
+                                <input type="checkbox" @if ($item->havePendidikanSebelum->kumpul_akte == 1) checked="checked" @endif
+                                    disabled class="checkbox checkbox-sm" />
+                            </label>
+                        </div>
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <span class="label-text text-sm">Kartu Keluarga</span>
+                                <input type="checkbox" @if ($item->havePendidikanSebelum->kumpul_kk == 1) checked="checked" @endif
+                                    disabled class="checkbox checkbox-sm" />
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
                             ✎
                         </a>
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-outline btn-error btn-sm btn"
+                            <button class="btn-outline btn btn-error btn-sm"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
                         </form>
-                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn-info btn-sm btn mt-1">
+                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn btn-info btn-sm mt-1">
                             {{-- 👁 --}}
                             🖨️
                         </a>

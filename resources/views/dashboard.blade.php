@@ -40,7 +40,7 @@
                 <div class="stat-value">{{ $siswa }}</div>
             </div>
 
-            <div class="stat">
+            {{-- <div class="stat">
                 <div class="stat-figure text-secondary">
                     <svg width="46px" height="46px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="stat-title">Jumlah Data Mata Pelajaran</div>
                 <div class="stat-value">{{ $mapel }}</div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

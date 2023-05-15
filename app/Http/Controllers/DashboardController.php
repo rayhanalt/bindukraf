@@ -12,8 +12,8 @@ class DashboardController extends Controller
     {
         return view('dashboard', [
             'siswa' => siswa::count(),
-            'guru' => guru::count(),
-            'mapel' => mapel::count(),
+            // 'guru' => guru::count(),
+            // 'mapel' => mapel::count(),
         ]);
     }
 }

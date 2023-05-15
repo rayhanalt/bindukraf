@@ -504,6 +504,38 @@
                                         </label>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text">Ijazah</span>
+                                                <input type="checkbox" name="kumpul_ijazah"
+                                                    @if ($pendidikan->kumpul_ijazah == 1) checked="checked" @endif
+                                                    value="1" class="checkbox-success checkbox" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text">Akte Kelahiran</span>
+                                                <input type="checkbox" name="kumpul_akte"
+                                                    @if ($pendidikan->kumpul_akte == 1) checked="checked" @endif
+                                                    value="1" class="checkbox-success checkbox" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text">Kartu Keluarga</span>
+                                                <input type="checkbox" name="kumpul_kk"
+                                                    @if ($pendidikan->kumpul_kk == 1) checked="checked" @endif
+                                                    value="1" class="checkbox-success checkbox" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>

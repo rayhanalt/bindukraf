@@ -19,8 +19,8 @@ class Siswa extends Component
     {
         return view('livewire.siswa', [
             'data' => $this->search === null ?
-                ModelsSiswa::with('haveAlamat', 'haveOrangtuaWali')->orderBy('id', 'desc')->Paginate(3)->withQueryString() :
-                ModelsSiswa::with('haveAlamat', 'haveOrangtuaWali')->orderBy('id', 'desc')
+                ModelsSiswa::with('haveAlamat', 'haveOrangtuaWali', 'havePendidikanSebelum')->orderBy('id', 'desc')->Paginate(3)->withQueryString() :
+                ModelsSiswa::with('haveAlamat', 'haveOrangtuaWali', 'havePendidikanSebelum')->orderBy('id', 'desc')
                 ->where('nama_lengkap', 'like', '%' . $this->search . '%')
                 ->orWhere('nama_panggilan', 'like', '%' . $this->search . '%')
                 ->orWhere('nis', 'like', '%' . $this->search . '%')

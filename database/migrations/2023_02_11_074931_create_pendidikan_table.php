@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('kelompok')->nullable();
             $table->string('jurusan')->nullable();
             $table->string('tanggal')->nullable();
+            $table->boolean('kumpul_ijazah')->nullable();
+            $table->boolean('kumpul_akte')->nullable();
+            $table->boolean('kumpul_kk')->nullable();
             $table->timestamps();
         });
     }

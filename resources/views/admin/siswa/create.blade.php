@@ -516,6 +516,35 @@
                                         </label>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text">Ijazah</span>
+                                                <input type="checkbox" name="kumpul_ijazah" value="1"
+                                                    class="checkbox-success checkbox" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text">Akte Kelahiran</span>
+                                                <input type="checkbox" name="kumpul_akte" value="1"
+                                                    class="checkbox-success checkbox" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text">Kartu Keluarga</span>
+                                                <input type="checkbox" name="kumpul_kk" value="1"
+                                                    class="checkbox-success checkbox" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -1088,7 +1117,7 @@
                         <label class="label">
                             <span class="label-text-alt text-blue-600">Ubah sendiri saat sudah login</span>
                             <span class="label-text-alt text-red-600">
-                                Password default untuk login Guru
+                                Password default untuk login Siswa
                             </span>
                         </label>
                     </div><br>
