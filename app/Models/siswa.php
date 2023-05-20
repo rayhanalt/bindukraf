@@ -38,4 +38,9 @@ class siswa extends Model
     {
         return $this->hasOne(kesehatan::class, 'nis', 'nis');
     }
+
+    public function getTahunAjaran()
+    {
+        return $this->belongsTo(tahunAjaran::class, 'kode_tahun_ajaran', 'kode_tahun_ajaran');
+    }
 }

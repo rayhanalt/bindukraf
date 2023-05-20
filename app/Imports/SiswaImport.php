@@ -79,6 +79,7 @@ class SiswaImport implements ToCollection, WithStartRow
                 'jenis_kelamin' => $row[14] ?? '',
                 'alamat' => $row[0] ?? '',
                 'no_telp' => $row[15] ?? '',
+                'kode_tahun_ajaran' => $row[64] ?? '',
             ]);
             alamat::create([
                 'nis' => $row[0] ?? '',

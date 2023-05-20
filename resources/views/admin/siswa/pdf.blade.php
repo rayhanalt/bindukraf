@@ -50,7 +50,7 @@
         <tr>
             <td style="font-size: 20px;" align="center">
                 <b>
-                    {{ $siswa->id }}
+                    {{ $iteration }}
                 </b>
             </td>
         </tr>
@@ -416,9 +416,9 @@
             <td>Tanggal</td>
             <td width="1px">:</td>
             <td colspan="7" style="border-bottom: 1px solid #000; width: 300px;">
-                @if ($siswa->havePendidikanSebelum->dari_sekolah == !null)
-                    {{ $siswa->havePendidikanSebelum->tanggal }}
-                @endif
+                {{-- @if ($siswa->havePendidikanSebelum->dari_sekolah == !null) --}}
+                {{ $siswa->havePendidikanSebelum->tanggal }}
+                {{-- @endif --}}
             </td>
         </tr>
 

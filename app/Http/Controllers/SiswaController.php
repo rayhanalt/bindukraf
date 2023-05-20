@@ -10,6 +10,7 @@ use App\Models\orangtua_wali;
 use App\Models\pendidikan_sebelum;
 use Illuminate\Support\Facades\DB;
 use App\Models\siswa as ModelsSiswa;
+use App\Models\tahunAjaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Support\Facades\App;
@@ -40,7 +41,9 @@ class SiswaController extends Controller
     public function create()
     {
         if (Auth::user()->jabatan == 'admin') {
-            return view('admin.siswa.create');
+            return view('admin.siswa.create', [
+                'getTahunAjaran' => tahunAjaran::orderBy('kode_tahun_ajaran', 'asc')->get()
+            ]);
         }
         return redirect()->back()->with('error', 'Anda tidak memiliki hak akses.');
     }
@@ -73,6 +76,7 @@ class SiswaController extends Controller
                 'agama' => 'required',
                 'jenis_kelamin' => 'required',
                 'no_telp' => 'required',
+                'kode_tahun_ajaran' => 'required',
             ]);
 
             // validasi data kesehatan siswa
@@ -193,8 +197,9 @@ class SiswaController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(ModelsSiswa $siswa)
+    public function show(ModelsSiswa $siswa, Request $request)
     {
+        // dd(json_encode($request->query('iteration')));
         $users = ModelsSiswa::with('haveAlamat', 'haveKesehatan', 'havePendidikanSebelum')->where('nis', $siswa->nis)->first();
         $ayah = orangtua_wali::where('nis', $siswa->nis)->where('status', 'ayah')->first();
         $ibu = orangtua_wali::where('nis', $siswa->nis)->where('status', 'ibu')->first();
@@ -204,6 +209,7 @@ class SiswaController extends Controller
         // $tgl_format = $tanggal_lahir->format("j F Y");
 
         $data = [
+            'iteration' => $request->query('iteration'),
             'title' => 'Laporan Data Siswa',
             'date' => date('m/d/Y'),
             'siswa' => $users,
@@ -242,6 +248,7 @@ class SiswaController extends Controller
                 'ayah' => $siswa->haveOrangtuaWali()->where('status', 'ayah')->first(),
                 'ibu' => $siswa->haveOrangtuaWali()->where('status', 'ibu')->first(),
                 'wali' => $siswa->haveOrangtuaWali()->where('status', 'wali')->first(),
+                'getTahunAjaran' => $siswa->getTahunAjaran()->orderBy('kode_tahun_ajaran', 'asc')->get()
             ]);
         }
         return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk halaman Edit Pegawai Lain.');
@@ -273,6 +280,7 @@ class SiswaController extends Controller
             'agama' => 'required',
             'jenis_kelamin' => 'required',
             'no_telp' => 'required',
+            'kode_tahun_ajaran' => 'required',
         ]);
         // validasi kesehatan
         $request->validate([
@@ -432,6 +440,7 @@ class SiswaController extends Controller
                 'yatim_piatu' => $request->yatim_piatu,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'no_telp' => $request->no_telp,
+                'kode_tahun_ajaran' => $request->kode_tahun_ajaran,
             ]);
         }
 
@@ -537,6 +546,7 @@ class SiswaController extends Controller
                 'yatim_piatu' => $request->yatim_piatu,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'no_telp' => $request->no_telp,
+                'kode_tahun_ajaran' => $request->kode_tahun_ajaran,
             ]);
         }
         return redirect('/siswa')->with('success', 'Data has been updated!')->withInput();

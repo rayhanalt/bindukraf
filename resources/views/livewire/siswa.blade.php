@@ -1,8 +1,10 @@
 <div>
     <div class="fixed top-[72px] bottom-2 right-2 left-2 flex flex-grow justify-between">
         <div>
-            <a href="/siswa/create" class="btn-outline btn btn-success btn-sm mr-2">➕ Data</a>
-            <a href="/export-data" class="btn-outline btn btn-secondary btn-sm mr-2">Export</a>
+            <a href="/siswa/create" class="btn-success btn-outline btn btn-sm mr-2">➕ Data</a>
+            <a href="/export-data?tahunAjaran={{ $searchSelect }}"
+                class="btn-outline btn btn-secondary btn-sm mr-2">Export</a>
+
         </div>
 
         <div>
@@ -10,7 +12,14 @@
         </div>
         <div>
 
-            <input wire:model="search" type="text" class="input-info input input-sm ml-2" placeholder="Search">
+            <select wire:model="searchSelect" class="input-info input input-sm ml-2">
+                <option value="">Tahun Ajaran</option>
+                @foreach ($getTahunAjaran as $tahunAjaran)
+                    <option value="{{ $tahunAjaran->kode_tahun_ajaran }}">{{ $tahunAjaran->tahun_ajaran }}
+                    </option>
+                @endforeach
+            </select>
+            <input wire:model="searchInput" type="text" class="input-info input input-sm ml-2" placeholder="Search">
 
         </div>
     </div>
@@ -35,7 +44,7 @@
                 <th class="text-center">Pekerjaan ibu</th>
                 <th class="text-center">Nama Wali</th>
                 <th class="text-center">Pekerjaan Wali</th>
-                <th>Data Terkumpul</th>
+                <th>Kelengkapan Berkas</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -90,18 +99,19 @@
                         </div>
                     </td>
                     <td>
-                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-outline btn btn-accent btn-sm mb-1">
+                        <a href="/siswa/{{ $item->nis }}/edit" class="btn-accent btn-outline btn btn-sm mb-1">
                             ✎
                         </a>
                         <form action="/siswa/{{ $item->nis }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn-outline btn btn-error btn-sm"
+                            <button class="btn-outline btn-error btn btn-sm"
                                 onclick="return confirm('yakin hapus data {{ $item->nama_panggilan }} ?')">
                                 🗑
                             </button>
                         </form>
-                        <a href="/siswa/{{ $item->nis }}" class="btn-outline btn btn-info btn-sm mt-1">
+                        <a href="/siswa/{{ $item->nis }}?iteration={{ $loop->iteration + $data->FirstItem() - 1 }}"
+                            class="btn-outline btn btn-info btn-sm mt-1">
                             {{-- 👁 --}}
                             🖨️
                         </a>

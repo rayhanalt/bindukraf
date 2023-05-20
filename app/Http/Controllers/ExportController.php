@@ -32,9 +32,10 @@ class ExportController extends Controller
           }
      }
 
-     public function exportData()
+     public function exportData(Request $request)
      {
-          $data = DB::table('siswa')
+          // dd(json_encode($request->input('tahunAjaran')));
+          $query = DB::table('siswa')
                ->select(
                     // siswa
                     'siswa.nis',
@@ -107,6 +108,7 @@ class ExportController extends Controller
                     'wali.penghasilan AS penghasilan_wali',
                     'wali.no_telp AS no_telp_wali',
                     'wali.keadaan AS keadaan_wali',
+                    'siswa.kode_tahun_ajaran',
 
                )
                ->join('orangtua_wali AS ayah', function ($join) {
@@ -123,9 +125,13 @@ class ExportController extends Controller
                })
                ->join('alamat', 'alamat.nis', '=', 'siswa.nis')
                ->join('kesehatan', 'kesehatan.nis', '=', 'siswa.nis')
-               ->join('pendidikan_sebelum', 'pendidikan_sebelum.nis', '=', 'siswa.nis')
-               ->get()
-               ->toArray();
+               ->join('pendidikan_sebelum', 'pendidikan_sebelum.nis', '=', 'siswa.nis');
+          if ($request->input('tahunAjaran') !== null) {
+               $query->where('kode_tahun_ajaran', $request->input('tahunAjaran'));
+          }
+
+          $data = $query->get()->toArray();
+
 
           return Excel::download(new ExportSingleTable($data), 'DataSiswa.xlsx', \Maatwebsite\Excel\Excel::XLSX, ['format' => 'yyy-mm-dd']);
      }
@@ -213,13 +219,14 @@ class ExportSingleTable implements FromCollection, WithHeadings, WithEvents
                'Penghasilan Wali',
                'No Telp Wali',
                'Keadaan Wali',
+               'Kode Tahun Ajaran',
           ];
      }
      public function registerEvents(): array
      {
           return [
                AfterSheet::class => function (AfterSheet $event) {
-                    $event->sheet->getStyle('A1:BL1')->applyFromArray([
+                    $event->sheet->getStyle('A1:BM1')->applyFromArray([
                          'font' => [
                               'bold' => true,
                          ],

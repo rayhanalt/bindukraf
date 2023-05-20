@@ -508,6 +508,29 @@
                                     <td>
                                         <div class="form-control">
                                             <label class="label cursor-pointer">
+                                                <span class="label-text"></span>
+                                                <span class="label-text-alt"></span>
+                                                <select class="select-bordered select w-full" id="kode_tahun_ajaran"
+                                                    name="kode_tahun_ajaran">
+                                                    <option disabled selected>Tahun Ajaran</option>
+                                                    @foreach ($getTahunAjaran as $TahunAjaran)
+                                                        <option value="{{ $TahunAjaran->kode_tahun_ajaran }}"
+                                                            {{ old('kode_tahun_ajaran') == $TahunAjaran->kode_tahun_ajaran ? 'selected' : '' }}>
+                                                            {{ $TahunAjaran->tahun_ajaran }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="label-text"></span>
+                                                <span class="label-text-alt text-red-600">
+                                                    @error('kode_tahun_ajaran')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
                                                 <span class="label-text">Ijazah</span>
                                                 <input type="checkbox" name="kumpul_ijazah"
                                                     @if ($pendidikan->kumpul_ijazah == 1) checked="checked" @endif

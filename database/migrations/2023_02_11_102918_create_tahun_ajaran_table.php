@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('tahun_ajaran', function (Blueprint $table) {
             $table->id();
             $table->string('kode_tahun_ajaran')->unique();
-            $table->string('kode_kelas');
-            $table->integer('nis');
             $table->string('tahun_ajaran');
             $table->timestamps();
         });

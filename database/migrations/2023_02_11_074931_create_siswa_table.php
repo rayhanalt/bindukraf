@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('bahasa');
             $table->string('jenis_kelamin');
             $table->string('no_telp');
+            $table->string('kode_tahun_ajaran');
             $table->timestamps();
         });
     }

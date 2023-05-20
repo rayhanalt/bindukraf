@@ -57,6 +57,7 @@
                 @can('admin')
                     {{-- <li><a href="/guru">Guru</a></li> --}}
                     <li><a href="/siswa">Siswa</a></li>
+                    <li><a href="/tahun_ajaran">Tahun Ajaran</a></li>
                     {{-- <li><a href="/kelas">Kelas</a></li> --}}
                     {{-- <li><a href="/mapel">Mapel</a></li> --}}
                     {{-- <li><a href="/jenis_ujian">Jenis Ujian</a></li> --}}
@@ -71,7 +72,7 @@
                     <li><a href="/perkembangan">Perkembangan Proyek</a></li> --}}
                 @endcan
                 <hr class="my-4 rounded-3xl border-2 border-dashed border-emerald-500" />
-                <li><a href="/user/edit/{{ auth()->user()->username }}" class="btn-secondary btn-outline btn">Ubah
+                <li><a href="/user/edit/{{ auth()->user()->username }}" class="btn-outline btn btn-secondary">Ubah
                         Profil</a></li>
             </ul>
         </div>

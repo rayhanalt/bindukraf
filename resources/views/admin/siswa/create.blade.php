@@ -15,7 +15,7 @@
                         <form method="post" enctype="multipart/form-data" action="/import-data">
                             @csrf
                             <input type="file" name="select_file" class="file-input-bordered file-input w-full max-w-xs">
-                            <input type="submit" name="upload" class="btn-primary btn" value="Import">
+                            <input type="submit" name="upload" class="btn btn-primary" value="Import">
                         </form>
                         @error('0')
                             <span class="text-sm text-red-600">
@@ -269,10 +269,10 @@
                                         </label>
                                         <select class="select-bordered select w-full" name="jenis_kelamin">
                                             <option disabled selected value="">Jenis Kelamin</option>
-                                            <option @if (old('jenis_kelamin' == 'L')) selected @endif value="L">Laki -
+                                            <option @if (old('jenis_kelamin') == 'L') selected @endif value="L">Laki -
                                                 laki
                                             </option>
-                                            <option @if (old('jenis_kelamin' == 'P')) selected @endif value="P">
+                                            <option @if (old('jenis_kelamin') == 'P') selected @endif value="P">
                                                 Perempuan
                                             </option>
                                         </select>
@@ -517,6 +517,29 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>
+                                        <div class="form-control">
+                                            <label class="label cursor-pointer">
+                                                <span class="label-text"></span>
+                                                <span class="label-text-alt"></span>
+                                                <select class="select-bordered select w-full" id="kode_tahun_ajaran"
+                                                    name="kode_tahun_ajaran">
+                                                    <option disabled selected>Tahun Ajaran</option>
+                                                    @foreach ($getTahunAjaran as $TahunAjaran)
+                                                        <option value="{{ $TahunAjaran->kode_tahun_ajaran }}"
+                                                            {{ old('kode_tahun_ajaran') == $TahunAjaran->kode_tahun_ajaran ? 'selected' : '' }}>
+                                                            {{ $TahunAjaran->tahun_ajaran }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="label-text"></span>
+                                                <span class="label-text-alt text-red-600">
+                                                    @error('kode_tahun_ajaran')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="form-control">
                                             <label class="label cursor-pointer">

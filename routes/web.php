@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JenisUjianController;
 use App\Http\Controllers\UbahProfileController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\tahunAjaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::resource('/jenis_ujian', JenisUjianController::class)->except('show')->mi
 
 // Kelas
 Route::resource('/kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except('show')->middleware('auth');
+
+// Tahun Ajaran
+Route::resource('/tahun_ajaran', tahunAjaranController::class)->except('show')->middleware('auth');
 
 // export excel
 Route::controller(ExportController::class)->group(function () {
